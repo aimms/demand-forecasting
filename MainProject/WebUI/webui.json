@@ -1,0 +1,2214 @@
+{
+  "version": "4.67.0",
+  "application": {
+    "aimms.widget.type": {
+      "literal": "application"
+    },
+    "browsername": {
+      "aimms": {
+        "contents": [
+          "webui::ClientBrowserName"
+        ]
+      }
+    },
+    "browsertimezone": {
+      "aimms": {
+        "contents": [
+          "webui::BrowserTimeZone"
+        ]
+      }
+    },
+    "ignoredst": {
+      "aimms": {
+        "contents": [
+          "webui::IgnoreDST"
+        ]
+      }
+    },
+    "pages": {
+      "literal": {
+        "name": "root",
+        "slug": "root",
+        "children": [
+          {
+            "name": "Main Project",
+            "slug": "main_project",
+            "children": [
+              {
+                "name": "home",
+                "slug": "home",
+                "type": "pagev2-grid",
+                "children": []
+              },
+              {
+                "name": "Story",
+                "type": "pagev2-grid",
+                "slug": "problem_description",
+                "children": []
+              },
+              {
+                "name": "Examples",
+                "type": "pagev2-grid",
+                "slug": "examples",
+                "children": [
+                  {
+                    "name": "Exponential Smoothing",
+                    "type": "pagev2-grid",
+                    "slug": "exponential_smoothing",
+                    "children": []
+                  },
+                  {
+                    "name": "Exponential Smoothing Trend",
+                    "type": "pagev2-grid",
+                    "slug": "exponential_smoothing_trend",
+                    "children": []
+                  },
+                  {
+                    "name": "Exponential Smoothing Trend Seasonality",
+                    "type": "pagev2-grid",
+                    "slug": "exponential_smoothing_trend_seasonality",
+                    "children": []
+                  },
+                  {
+                    "name": "Moving Average",
+                    "type": "pagev2-grid",
+                    "slug": "moving_average",
+                    "children": []
+                  },
+                  {
+                    "name": "Weighted Moving Average",
+                    "type": "pagev2-grid",
+                    "slug": "weighted_moving_average",
+                    "children": []
+                  },
+                  {
+                    "name": "Simple Linear Regression",
+                    "type": "pagev2-grid",
+                    "slug": "simple_linear_regression",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "Dashboard",
+                "type": "pagev2-grid",
+                "slug": "inputs",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "theme.classic": {
+      "literal": "NOT_ALLOWED"
+    },
+    "timezone": {
+      "aimms": {
+        "contents": [
+          "webui::DisplayTimeZone"
+        ]
+      }
+    },
+    "timezone.dst.readonly": {
+      "aimms": {
+        "contents": [
+          "webui::DefaultDSTSettingForDisplayTimeZone"
+        ]
+      }
+    },
+    "widget.visibility.greyout": {
+      "literal": false
+    },
+    "workflows.configuration": {
+      "aimms": {
+        "contents": [
+          "sp_myWorkflowSteps"
+        ],
+        "slices": [
+          {
+            "identifier": "sp_myWorkflowSteps",
+            "slice": [
+              {
+                "index": "webui::indexWorkflowOrder",
+                "type": "free",
+                "value": "webui::indexWorkflowOrder"
+              },
+              {
+                "index": "webui::indexNoOfPages",
+                "type": "free",
+                "value": "webui::indexNoOfPages"
+              },
+              {
+                "index": "webui::indexWorkflowPageSpec",
+                "type": "free",
+                "value": "webui::indexWorkflowPageSpec"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "workflows.information": {
+      "aimms": {
+        "contents": [
+          "sp_myWorkflows"
+        ],
+        "slices": [
+          {
+            "identifier": "sp_myWorkflows",
+            "slice": [
+              {
+                "index": "webui::indexWorkflowOrder",
+                "type": "free",
+                "value": "webui::indexWorkflowOrder"
+              },
+              {
+                "index": "webui::indexWorkflowSpec",
+                "type": "free",
+                "value": "webui::indexWorkflowSpec"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "layouts/custom_00dc0a72-01d7-43df-b5f2-ca14bbc2b158": {
+    "definition": {
+      "literal": {
+        "componentName": "Grid",
+        "props": {
+          "gridTemplateColumns": "1fr",
+          "gridTemplateRows": "37% 60%",
+          "gridTemplateAreas": "\"area-a\" \"area-b\""
+        },
+        "items": [
+          {
+            "componentName": "WidgetArea",
+            "props": {
+              "gridArea": "area-a",
+              "name": "Area A",
+              "gridAutoFlow": "row"
+            }
+          },
+          {
+            "componentName": "WidgetArea",
+            "props": {
+              "gridArea": "area-b",
+              "name": "Area B",
+              "gridAutoFlow": "column"
+            }
+          }
+        ]
+      }
+    },
+    "displayName": {
+      "literal": "Examples"
+    }
+  },
+  "layouts/custom_3c67264c-89ae-4db7-a1c4-2ba2141dbba9": {
+    "definition": {
+      "literal": {
+        "componentName": "Grid",
+        "props": {
+          "gridTemplateColumns": "1fr 1fr",
+          "gridTemplateRows": "30% 67%",
+          "gridTemplateAreas": "\"area-a area-c\" \"area-b area-b\""
+        },
+        "items": [
+          {
+            "componentName": "WidgetArea",
+            "props": {
+              "gridArea": "area-a",
+              "name": "Area A",
+              "gridAutoFlow": "row"
+            }
+          },
+          {
+            "componentName": "WidgetArea",
+            "props": {
+              "gridArea": "area-b",
+              "name": "Area B",
+              "gridAutoFlow": "row"
+            }
+          },
+          {
+            "componentName": "WidgetArea",
+            "props": {
+              "gridArea": "area-c",
+              "name": "Area C",
+              "gridAutoFlow": "column"
+            }
+          }
+        ]
+      }
+    },
+    "displayName": {
+      "literal": "SimpleLinearRegression"
+    }
+  },
+  "layouts/custom_df115db5-9bf4-4c8e-befe-3ef770a7723d": {
+    "definition": {
+      "literal": {
+        "componentName": "Grid",
+        "props": {
+          "gridTemplateColumns": "1fr 1fr 1fr",
+          "gridTemplateRows": "1fr 1fr",
+          "gridTemplateAreas": "\"area-a area-b area-c\" \"area-d area-e area-f\""
+        },
+        "items": [
+          {
+            "componentName": "WidgetArea",
+            "props": {
+              "gridArea": "area-a",
+              "name": "Area A",
+              "gridAutoFlow": "row"
+            }
+          },
+          {
+            "componentName": "WidgetArea",
+            "props": {
+              "gridArea": "area-b",
+              "name": "Area B",
+              "gridAutoFlow": "row"
+            }
+          },
+          {
+            "componentName": "WidgetArea",
+            "props": {
+              "gridArea": "area-c",
+              "name": "Area C",
+              "gridAutoFlow": "row"
+            }
+          },
+          {
+            "componentName": "WidgetArea",
+            "props": {
+              "gridArea": "area-d",
+              "name": "Area D",
+              "gridAutoFlow": "column"
+            }
+          },
+          {
+            "componentName": "WidgetArea",
+            "props": {
+              "gridArea": "area-e",
+              "name": "Area E",
+              "gridAutoFlow": "column"
+            }
+          },
+          {
+            "componentName": "WidgetArea",
+            "props": {
+              "gridArea": "area-f",
+              "name": "Area F",
+              "gridAutoFlow": "column"
+            }
+          }
+        ]
+      }
+    },
+    "displayName": {
+      "literal": "Dashboard"
+    }
+  },
+  "pages/exponential_smoothing": {
+    "aimms.widget.type": {
+      "literal": "pagev2-grid"
+    },
+    "bindings": {
+      "literal": [
+        {
+          "widgetUri": "lnd_producersInformation_2",
+          "gridArea": "area-b",
+          "dndId": "area-blnd_producersInformation_20"
+        },
+        {
+          "widgetUri": "scl_settings1",
+          "gridArea": "area-a",
+          "dndId": "area-ascl_settings12"
+        },
+        {
+          "widgetUri": "btn_run1",
+          "gridArea": "area-a",
+          "dndId": "area-abtn_run11"
+        }
+      ]
+    },
+    "layoutId": {
+      "literal": "custom_00dc0a72-01d7-43df-b5f2-ca14bbc2b158"
+    },
+    "widgets": {
+      "literal": [
+        {
+          "uri": "lnd_producersInformation_2",
+          "layoutInfo": {}
+        },
+        {
+          "uri": "scl_settings1",
+          "layoutInfo": {
+            "width": "2",
+            "height": "1"
+          }
+        },
+        {
+          "uri": "btn_run1",
+          "layoutInfo": {
+            "width": "2",
+            "height": "1"
+          }
+        }
+      ]
+    }
+  },
+  "pages/exponential_smoothing_trend": {
+    "aimms.widget.type": {
+      "literal": "pagev2-grid"
+    },
+    "bindings": {
+      "literal": [
+        {
+          "widgetUri": "scl_settings1_1",
+          "gridArea": "area-a",
+          "dndId": "area-ascl_settings1_10"
+        },
+        {
+          "widgetUri": "btn_run1_1",
+          "gridArea": "area-a",
+          "dndId": "Unassigned widgetsbtn_run1_12"
+        },
+        {
+          "widgetUri": "bbc_productionCost_6",
+          "gridArea": "area-b",
+          "dndId": "area-bbbc_productionCost_61"
+        }
+      ]
+    },
+    "layoutId": {
+      "literal": "custom_00dc0a72-01d7-43df-b5f2-ca14bbc2b158"
+    },
+    "widgets": {
+      "literal": [
+        {
+          "uri": "bbc_productionCost_6",
+          "layoutInfo": {}
+        },
+        {
+          "uri": "btn_run1_1",
+          "layoutInfo": {
+            "width": "2",
+            "height": "1"
+          }
+        },
+        {
+          "uri": "scl_settings1_1",
+          "layoutInfo": {
+            "width": "2",
+            "height": "1"
+          }
+        }
+      ]
+    }
+  },
+  "pages/exponential_smoothing_trend_seasonality": {
+    "aimms.widget.type": {
+      "literal": "pagev2-grid"
+    },
+    "bindings": {
+      "literal": [
+        {
+          "widgetUri": "scl_settings1_1_1",
+          "gridArea": "area-a",
+          "dndId": "Unassigned widgetsscl_settings1_1_12"
+        },
+        {
+          "widgetUri": "btn_run1_1_1",
+          "gridArea": "area-a",
+          "dndId": "area-abtn_run1_1_10"
+        },
+        {
+          "widgetUri": "bbc_productionCost_7",
+          "gridArea": "area-b",
+          "dndId": "area-bbbc_productionCost_71"
+        }
+      ]
+    },
+    "layoutId": {
+      "literal": "custom_00dc0a72-01d7-43df-b5f2-ca14bbc2b158"
+    },
+    "widgets": {
+      "literal": [
+        {
+          "uri": "bbc_productionCost_7",
+          "layoutInfo": {}
+        },
+        {
+          "uri": "btn_run1_1_1",
+          "layoutInfo": {
+            "width": "2",
+            "height": "1"
+          }
+        },
+        {
+          "uri": "scl_settings1_1_1",
+          "layoutInfo": {
+            "width": "2",
+            "height": "1"
+          }
+        }
+      ]
+    }
+  },
+  "pages/home": {
+    "aimms.widget.type": {
+      "literal": "pagev2-grid"
+    },
+    "bindings": {
+      "literal": [
+        {
+          "widgetUri": "img_homeLogo",
+          "gridArea": "area-d",
+          "dndId": "area-aimg_homeLogo1"
+        },
+        {
+          "widgetUri": "txt_welcome",
+          "gridArea": "area-a",
+          "dndId": "area-atxt_welcome0"
+        }
+      ]
+    },
+    "layoutId": {
+      "literal": "Layout10"
+    },
+    "widgets": {
+      "literal": [
+        {
+          "uri": "img_homeLogo",
+          "layoutInfo": {
+            "width": "2",
+            "height": "1"
+          }
+        },
+        {
+          "uri": "txt_welcome",
+          "layoutInfo": {
+            "width": "2",
+            "height": "1"
+          }
+        }
+      ]
+    }
+  },
+  "pages/inputs": {
+    "aimms.widget.type": {
+      "literal": "pagev2-grid"
+    },
+    "bindings": {
+      "literal": [
+        {
+          "widgetUri": "bbc_productionCost_5",
+          "gridArea": "area-f",
+          "dndId": "Unassigned widgetsbbc_productionCost_55"
+        },
+        {
+          "widgetUri": "bbc_productionCost_4",
+          "gridArea": "area-e",
+          "dndId": "area-ebbc_productionCost_40"
+        },
+        {
+          "widgetUri": "bbc_productionCost_3",
+          "gridArea": "area-d",
+          "dndId": "area-dbbc_productionCost_31"
+        },
+        {
+          "widgetUri": "bbc_productionCost_2",
+          "gridArea": "area-c",
+          "dndId": "area-cbbc_productionCost_22"
+        },
+        {
+          "widgetUri": "bbc_productionCost_1",
+          "gridArea": "area-b",
+          "dndId": "area-bbbc_productionCost_13"
+        },
+        {
+          "widgetUri": "lnd_producersInformation_1",
+          "gridArea": "area-a",
+          "dndId": "area-alnd_producersInformation_14"
+        }
+      ]
+    },
+    "layoutId": {
+      "literal": "custom_df115db5-9bf4-4c8e-befe-3ef770a7723d"
+    },
+    "primarypageaction": {
+      "aimms": {
+        "contents": [
+          "sp_dashboardPrimaryActions"
+        ],
+        "slices": [
+          {
+            "identifier": "sp_dashboardPrimaryActions",
+            "slice": [
+              {
+                "index": "webui::indexPageActionSpec",
+                "type": "free",
+                "value": "webui::indexPageActionSpec"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "widgets": {
+      "literal": [
+        {
+          "uri": "lnd_producersInformation_1",
+          "layoutInfo": {}
+        },
+        {
+          "uri": "bbc_productionCost_1",
+          "layoutInfo": {}
+        },
+        {
+          "uri": "bbc_productionCost_2",
+          "layoutInfo": {}
+        },
+        {
+          "uri": "bbc_productionCost_3",
+          "layoutInfo": {}
+        },
+        {
+          "uri": "bbc_productionCost_4",
+          "layoutInfo": {}
+        },
+        {
+          "uri": "bbc_productionCost_5",
+          "layoutInfo": {}
+        }
+      ]
+    }
+  },
+  "pages/moving_average": {
+    "aimms.widget.type": {
+      "literal": "pagev2-grid"
+    },
+    "bindings": {
+      "literal": [
+        {
+          "widgetUri": "btn_run1_1_1_1",
+          "gridArea": "area-a",
+          "dndId": "area-abtn_run1_1_1_10"
+        },
+        {
+          "widgetUri": "bbc_productionCost_8",
+          "gridArea": "area-a",
+          "dndId": "area-bbbc_productionCost_81"
+        }
+      ]
+    },
+    "layoutId": {
+      "literal": "Layout11"
+    },
+    "widgets": {
+      "literal": [
+        {
+          "uri": "bbc_productionCost_8",
+          "layoutInfo": {}
+        },
+        {
+          "uri": "btn_run1_1_1_1",
+          "layoutInfo": {
+            "width": "2",
+            "height": "1"
+          }
+        }
+      ]
+    }
+  },
+  "pages/problem_description": {
+    "aimms.widget.type": {
+      "literal": "pagev2-grid"
+    },
+    "bindings": {
+      "literal": [
+        {
+          "widgetUri": "txt_problemDescription",
+          "gridArea": "area-a",
+          "dndId": "Unassigned widgetstxt_problemDescription0"
+        }
+      ]
+    },
+    "layoutId": {
+      "literal": "Layout11"
+    },
+    "widgets": {
+      "literal": [
+        {
+          "uri": "txt_problemDescription",
+          "layoutInfo": {
+            "width": "2",
+            "height": "1"
+          }
+        }
+      ]
+    }
+  },
+  "pages/simple_linear_regression": {
+    "aimms.widget.type": {
+      "literal": "pagev2-grid"
+    },
+    "bindings": {
+      "literal": [
+        {
+          "widgetUri": "btn_run1_1_1_1_2",
+          "gridArea": "area-b",
+          "dndId": "area-bbtn_run1_1_1_1_20"
+        },
+        {
+          "widgetUri": "bbc_productionCost_10",
+          "gridArea": "area-b",
+          "dndId": "area-bbbc_productionCost_101"
+        },
+        {
+          "widgetUri": "tbl_coeff",
+          "gridArea": "area-a",
+          "dndId": "area-atbl_coeff2"
+        },
+        {
+          "widgetUri": "tbl_variationMeasure",
+          "gridArea": "area-c",
+          "dndId": "Unassigned widgetstbl_variationMeasure"
+        }
+      ]
+    },
+    "layoutId": {
+      "literal": "custom_3c67264c-89ae-4db7-a1c4-2ba2141dbba9"
+    },
+    "widgets": {
+      "literal": [
+        {
+          "uri": "bbc_productionCost_10",
+          "layoutInfo": {}
+        },
+        {
+          "uri": "btn_run1_1_1_1_2",
+          "layoutInfo": {
+            "width": "2",
+            "height": "1"
+          }
+        },
+        {
+          "uri": "tbl_coeff",
+          "layoutInfo": {
+            "width": "2",
+            "height": "1"
+          }
+        },
+        {
+          "uri": "tbl_variationMeasure",
+          "layoutInfo": {
+            "width": "2",
+            "height": "1"
+          }
+        }
+      ]
+    }
+  },
+  "pages/weighted_moving_average": {
+    "aimms.widget.type": {
+      "literal": "pagev2-grid"
+    },
+    "bindings": {
+      "literal": [
+        {
+          "widgetUri": "bbc_productionCost_9",
+          "gridArea": "area-b",
+          "dndId": "area-bbbc_productionCost_91"
+        },
+        {
+          "widgetUri": "tbl_weights",
+          "gridArea": "area-a",
+          "dndId": "area-ctbl_weights0"
+        },
+        {
+          "widgetUri": "btn_run1_1_1_1_1",
+          "gridArea": "area-a",
+          "dndId": "area-abtn_run1_1_1_1_12"
+        }
+      ]
+    },
+    "layoutId": {
+      "literal": "custom_00dc0a72-01d7-43df-b5f2-ca14bbc2b158"
+    },
+    "widgets": {
+      "literal": [
+        {
+          "uri": "bbc_productionCost_9",
+          "layoutInfo": {}
+        },
+        {
+          "uri": "btn_run1_1_1_1_1",
+          "layoutInfo": {
+            "width": "2",
+            "height": "1"
+          }
+        },
+        {
+          "uri": "tbl_weights",
+          "layoutInfo": {
+            "width": "2",
+            "height": "1"
+          }
+        }
+      ]
+    }
+  },
+  "widgets/bbc_productionCost_1": {
+    "aimms.widget.type": {
+      "literal": "combinationchart"
+    },
+    "color.index": {
+      "literal": "<IDENTIFIER-SET>"
+    },
+    "contents.__display_order__": {
+      "literal": [
+        "contents.0",
+        "contents.1"
+      ]
+    },
+    "contents.0.chart.type": {
+      "literal": "line"
+    },
+    "contents.0.displaydomain": {
+      "literal": {
+        "identifier": "p_historicData",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.0.identifier": {
+      "literal": {
+        "identifier": "p_historicData",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.1.chart.type": {
+      "literal": "line"
+    },
+    "contents.1.identifier": {
+      "literal": {
+        "identifier": "p_estimateExponentialSmoothingTrend",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.numdecimals": {
+      "literal": 0
+    },
+    "contents.partition": {
+      "literal": {
+        "header": [
+          "i_producer",
+          "i_day"
+        ],
+        "grouped": [
+          "i_contract",
+          "<IDENTIFIER-SET>"
+        ],
+        "stacked": [],
+        "aggregated": []
+      }
+    },
+    "contents.show.units": {
+      "literal": true
+    },
+    "data.labels.show": {
+      "literal": false
+    },
+    "indices.__display_order__": {
+      "literal": [
+        "indices.0"
+      ]
+    },
+    "legend.show": {
+      "literal": true
+    },
+    "name": {
+      "literal": "cbc_exponentialSmoothingTrend"
+    },
+    "title": {
+      "literal": "Exponential Smoothing Trend"
+    }
+  },
+  "widgets/bbc_productionCost_10": {
+    "aimms.widget.type": {
+      "literal": "combinationchart"
+    },
+    "axis.y.0.min": {
+      "literal": 0
+    },
+    "axis.y.0.step": {
+      "literal": 150
+    },
+    "color.index": {
+      "literal": "<IDENTIFIER-SET>"
+    },
+    "contents.__display_order__": {
+      "literal": [
+        "contents.0",
+        "contents.1"
+      ]
+    },
+    "contents.0.chart.type": {
+      "literal": "line"
+    },
+    "contents.0.identifier": {
+      "literal": {
+        "identifier": "p_costEstimate",
+        "slice": [
+          {
+            "index": "i_ob",
+            "type": "free",
+            "value": "i_ob"
+          }
+        ]
+      }
+    },
+    "contents.1.chart.type": {
+      "literal": "scatter"
+    },
+    "contents.1.identifier": {
+      "literal": {
+        "identifier": "p_def_costOfProduction",
+        "slice": [
+          {
+            "index": "i_ob",
+            "type": "free",
+            "value": "i_ob"
+          }
+        ]
+      }
+    },
+    "contents.1.numdecimals": {
+      "literal": 3
+    },
+    "contents.numdecimals": {
+      "literal": 0
+    },
+    "contents.partition": {
+      "literal": {
+        "header": [
+          "i_producer",
+          "i_day"
+        ],
+        "grouped": [
+          "i_contract",
+          "<IDENTIFIER-SET>"
+        ],
+        "stacked": [],
+        "aggregated": []
+      }
+    },
+    "contents.show.units": {
+      "literal": true
+    },
+    "data.interpolate": {
+      "literal": false
+    },
+    "data.labels.show": {
+      "literal": false
+    },
+    "indices.__display_order__": {
+      "literal": [
+        "indices.0"
+      ]
+    },
+    "legend.show": {
+      "literal": true
+    },
+    "name": {
+      "literal": "cbc_simpleLinearRegression6"
+    },
+    "title": {
+      "literal": "Simple Linear Regression"
+    }
+  },
+  "widgets/bbc_productionCost_2": {
+    "aimms.widget.type": {
+      "literal": "combinationchart"
+    },
+    "color.index": {
+      "literal": "<IDENTIFIER-SET>"
+    },
+    "contents.__display_order__": {
+      "literal": [
+        "contents.0",
+        "contents.1"
+      ]
+    },
+    "contents.0.chart.type": {
+      "literal": "line"
+    },
+    "contents.0.displaydomain": {
+      "literal": {
+        "identifier": "p_historicData",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.0.identifier": {
+      "literal": {
+        "identifier": "p_historicData",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.1.chart.type": {
+      "literal": "line"
+    },
+    "contents.1.identifier": {
+      "literal": {
+        "identifier": "p_estimateExponentialSmoothingTrendSeasonality",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.numdecimals": {
+      "literal": 0
+    },
+    "contents.partition": {
+      "literal": {
+        "header": [
+          "i_producer",
+          "i_day"
+        ],
+        "grouped": [
+          "i_contract",
+          "<IDENTIFIER-SET>"
+        ],
+        "stacked": [],
+        "aggregated": []
+      }
+    },
+    "contents.show.units": {
+      "literal": true
+    },
+    "data.labels.show": {
+      "literal": false
+    },
+    "indices.__display_order__": {
+      "literal": [
+        "indices.0"
+      ]
+    },
+    "legend.show": {
+      "literal": true
+    },
+    "name": {
+      "literal": "cbc_exponentialSmoothingTrendSeasonality"
+    },
+    "title": {
+      "literal": "Exponential Smoothing Trend Seasonality"
+    }
+  },
+  "widgets/bbc_productionCost_3": {
+    "aimms.widget.type": {
+      "literal": "combinationchart"
+    },
+    "color.index": {
+      "literal": "<IDENTIFIER-SET>"
+    },
+    "contents.__display_order__": {
+      "literal": [
+        "contents.0",
+        "contents.1"
+      ]
+    },
+    "contents.0.chart.type": {
+      "literal": "line"
+    },
+    "contents.0.displaydomain": {
+      "literal": {
+        "identifier": "p_historicData",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.0.identifier": {
+      "literal": {
+        "identifier": "p_historicData",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.1.chart.type": {
+      "literal": "line"
+    },
+    "contents.1.identifier": {
+      "literal": {
+        "identifier": "p_estimateMovingAverage",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.numdecimals": {
+      "literal": 0
+    },
+    "contents.partition": {
+      "literal": {
+        "header": [
+          "i_producer",
+          "i_day"
+        ],
+        "grouped": [
+          "i_contract",
+          "<IDENTIFIER-SET>"
+        ],
+        "stacked": [],
+        "aggregated": []
+      }
+    },
+    "contents.show.units": {
+      "literal": true
+    },
+    "data.labels.show": {
+      "literal": false
+    },
+    "indices.__display_order__": {
+      "literal": [
+        "indices.0"
+      ]
+    },
+    "legend.show": {
+      "literal": true
+    },
+    "name": {
+      "literal": "cbc_movingAverage"
+    },
+    "title": {
+      "literal": "Moving Average"
+    }
+  },
+  "widgets/bbc_productionCost_4": {
+    "aimms.widget.type": {
+      "literal": "combinationchart"
+    },
+    "color.index": {
+      "literal": "<IDENTIFIER-SET>"
+    },
+    "contents.__display_order__": {
+      "literal": [
+        "contents.0",
+        "contents.1"
+      ]
+    },
+    "contents.0.chart.type": {
+      "literal": "line"
+    },
+    "contents.0.displaydomain": {
+      "literal": {
+        "identifier": "p_historicData",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.0.identifier": {
+      "literal": {
+        "identifier": "p_historicData",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.1.chart.type": {
+      "literal": "line"
+    },
+    "contents.1.identifier": {
+      "literal": {
+        "identifier": "p_estimateWeightedMovingAverage",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.numdecimals": {
+      "literal": 0
+    },
+    "contents.partition": {
+      "literal": {
+        "header": [
+          "i_producer",
+          "i_day"
+        ],
+        "grouped": [
+          "i_contract",
+          "<IDENTIFIER-SET>"
+        ],
+        "stacked": [],
+        "aggregated": []
+      }
+    },
+    "contents.show.units": {
+      "literal": true
+    },
+    "data.labels.show": {
+      "literal": false
+    },
+    "indices.__display_order__": {
+      "literal": [
+        "indices.0"
+      ]
+    },
+    "legend.show": {
+      "literal": true
+    },
+    "name": {
+      "literal": "cbc_weightedMovingAverage"
+    },
+    "title": {
+      "literal": "Weighted Moving Average"
+    }
+  },
+  "widgets/bbc_productionCost_5": {
+    "aimms.widget.type": {
+      "literal": "combinationchart"
+    },
+    "axis.y.0.min": {
+      "literal": 0
+    },
+    "axis.y.0.step": {
+      "literal": 150
+    },
+    "color.index": {
+      "literal": "<IDENTIFIER-SET>"
+    },
+    "contents.__display_order__": {
+      "literal": [
+        "contents.0",
+        "contents.1"
+      ]
+    },
+    "contents.0.chart.type": {
+      "literal": "line"
+    },
+    "contents.0.identifier": {
+      "literal": {
+        "identifier": "p_costEstimate",
+        "slice": [
+          {
+            "index": "i_ob",
+            "type": "free",
+            "value": "i_ob"
+          }
+        ]
+      }
+    },
+    "contents.1.chart.type": {
+      "literal": "scatter"
+    },
+    "contents.1.identifier": {
+      "literal": {
+        "identifier": "p_def_costOfProduction",
+        "slice": [
+          {
+            "index": "i_ob",
+            "type": "free",
+            "value": "i_ob"
+          }
+        ]
+      }
+    },
+    "contents.1.numdecimals": {
+      "literal": 3
+    },
+    "contents.numdecimals": {
+      "literal": 0
+    },
+    "contents.partition": {
+      "literal": {
+        "header": [
+          "i_producer",
+          "i_day"
+        ],
+        "grouped": [
+          "i_contract",
+          "<IDENTIFIER-SET>"
+        ],
+        "stacked": [],
+        "aggregated": []
+      }
+    },
+    "contents.show.units": {
+      "literal": true
+    },
+    "data.interpolate": {
+      "literal": false
+    },
+    "data.labels.show": {
+      "literal": false
+    },
+    "indices.__display_order__": {
+      "literal": [
+        "indices.0"
+      ]
+    },
+    "legend.show": {
+      "literal": true
+    },
+    "name": {
+      "literal": "cbc_simpleLinearRegression"
+    },
+    "title": {
+      "literal": "Simple Linear Regression"
+    }
+  },
+  "widgets/bbc_productionCost_6": {
+    "aimms.widget.type": {
+      "literal": "combinationchart"
+    },
+    "color.index": {
+      "literal": "<IDENTIFIER-SET>"
+    },
+    "contents.__display_order__": {
+      "literal": [
+        "contents.0",
+        "contents.1"
+      ]
+    },
+    "contents.0.chart.type": {
+      "literal": "line"
+    },
+    "contents.0.displaydomain": {
+      "literal": {
+        "identifier": "p_historicData",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.0.identifier": {
+      "literal": {
+        "identifier": "p_historicData",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.1.chart.type": {
+      "literal": "line"
+    },
+    "contents.1.identifier": {
+      "literal": {
+        "identifier": "p_estimateExponentialSmoothingTrend",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.numdecimals": {
+      "literal": 0
+    },
+    "contents.partition": {
+      "literal": {
+        "header": [
+          "i_producer",
+          "i_day"
+        ],
+        "grouped": [
+          "i_contract",
+          "<IDENTIFIER-SET>"
+        ],
+        "stacked": [],
+        "aggregated": []
+      }
+    },
+    "contents.show.units": {
+      "literal": true
+    },
+    "data.labels.show": {
+      "literal": false
+    },
+    "indices.__display_order__": {
+      "literal": [
+        "indices.0"
+      ]
+    },
+    "legend.show": {
+      "literal": true
+    },
+    "name": {
+      "literal": "cbc_exponentialSmoothingTrend2"
+    },
+    "title": {
+      "literal": "Exponential Smoothing Trend"
+    }
+  },
+  "widgets/bbc_productionCost_7": {
+    "aimms.widget.type": {
+      "literal": "combinationchart"
+    },
+    "color.index": {
+      "literal": "<IDENTIFIER-SET>"
+    },
+    "contents.__display_order__": {
+      "literal": [
+        "contents.0",
+        "contents.1"
+      ]
+    },
+    "contents.0.chart.type": {
+      "literal": "line"
+    },
+    "contents.0.displaydomain": {
+      "literal": {
+        "identifier": "p_historicData",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.0.identifier": {
+      "literal": {
+        "identifier": "p_historicData",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.1.chart.type": {
+      "literal": "line"
+    },
+    "contents.1.identifier": {
+      "literal": {
+        "identifier": "p_estimateExponentialSmoothingTrendSeasonality",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.numdecimals": {
+      "literal": 0
+    },
+    "contents.partition": {
+      "literal": {
+        "header": [
+          "i_producer",
+          "i_day"
+        ],
+        "grouped": [
+          "i_contract",
+          "<IDENTIFIER-SET>"
+        ],
+        "stacked": [],
+        "aggregated": []
+      }
+    },
+    "contents.show.units": {
+      "literal": true
+    },
+    "data.labels.show": {
+      "literal": false
+    },
+    "indices.__display_order__": {
+      "literal": [
+        "indices.0"
+      ]
+    },
+    "legend.show": {
+      "literal": true
+    },
+    "name": {
+      "literal": "cbc_exponentialSmoothingTrendSeasonality3"
+    },
+    "title": {
+      "literal": "Exponential Smoothing Trend Seasonality"
+    }
+  },
+  "widgets/bbc_productionCost_8": {
+    "aimms.widget.type": {
+      "literal": "combinationchart"
+    },
+    "color.index": {
+      "literal": "<IDENTIFIER-SET>"
+    },
+    "contents.__display_order__": {
+      "literal": [
+        "contents.0",
+        "contents.1"
+      ]
+    },
+    "contents.0.chart.type": {
+      "literal": "line"
+    },
+    "contents.0.displaydomain": {
+      "literal": {
+        "identifier": "p_historicData",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.0.identifier": {
+      "literal": {
+        "identifier": "p_historicData",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.1.chart.type": {
+      "literal": "line"
+    },
+    "contents.1.identifier": {
+      "literal": {
+        "identifier": "p_estimateMovingAverage",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.numdecimals": {
+      "literal": 0
+    },
+    "contents.partition": {
+      "literal": {
+        "header": [
+          "i_producer",
+          "i_day"
+        ],
+        "grouped": [
+          "i_contract",
+          "<IDENTIFIER-SET>"
+        ],
+        "stacked": [],
+        "aggregated": []
+      }
+    },
+    "contents.show.units": {
+      "literal": true
+    },
+    "data.labels.show": {
+      "literal": false
+    },
+    "indices.__display_order__": {
+      "literal": [
+        "indices.0"
+      ]
+    },
+    "legend.show": {
+      "literal": true
+    },
+    "name": {
+      "literal": "cbc_movingAverage4"
+    },
+    "title": {
+      "literal": "Moving Average"
+    }
+  },
+  "widgets/bbc_productionCost_9": {
+    "aimms.widget.type": {
+      "literal": "combinationchart"
+    },
+    "color.index": {
+      "literal": "<IDENTIFIER-SET>"
+    },
+    "contents.__display_order__": {
+      "literal": [
+        "contents.0",
+        "contents.1"
+      ]
+    },
+    "contents.0.chart.type": {
+      "literal": "line"
+    },
+    "contents.0.displaydomain": {
+      "literal": {
+        "identifier": "p_historicData",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.0.identifier": {
+      "literal": {
+        "identifier": "p_historicData",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.1.chart.type": {
+      "literal": "line"
+    },
+    "contents.1.identifier": {
+      "literal": {
+        "identifier": "p_estimateWeightedMovingAverage",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.numdecimals": {
+      "literal": 0
+    },
+    "contents.partition": {
+      "literal": {
+        "header": [
+          "i_producer",
+          "i_day"
+        ],
+        "grouped": [
+          "i_contract",
+          "<IDENTIFIER-SET>"
+        ],
+        "stacked": [],
+        "aggregated": []
+      }
+    },
+    "contents.show.units": {
+      "literal": true
+    },
+    "data.labels.show": {
+      "literal": false
+    },
+    "indices.__display_order__": {
+      "literal": [
+        "indices.0"
+      ]
+    },
+    "legend.show": {
+      "literal": true
+    },
+    "name": {
+      "literal": "cbc_weightedMovingAverage5"
+    },
+    "title": {
+      "literal": "Weighted Moving Average"
+    }
+  },
+  "widgets/btn_run1": {
+    "action": {
+      "literal": {
+        "type": "procedure",
+        "value": "pr_exampleExponentialSmoothing"
+      }
+    },
+    "aimms.widget.type": {
+      "literal": "button"
+    },
+    "name": {
+      "literal": "btn_run1"
+    },
+    "title": {
+      "literal": "Run Exponential Smoothing"
+    }
+  },
+  "widgets/btn_run1_1": {
+    "action": {
+      "literal": {
+        "type": "procedure",
+        "value": "pr_exampleExponentialSmoothingTrend"
+      }
+    },
+    "aimms.widget.type": {
+      "literal": "button"
+    },
+    "name": {
+      "literal": "btn_run2"
+    },
+    "title": {
+      "literal": "Run Exponential Smoothing Trend"
+    }
+  },
+  "widgets/btn_run1_1_1": {
+    "action": {
+      "literal": {
+        "type": "procedure",
+        "value": "pr_exampleExponentialSmoothingTrendSeasonality"
+      }
+    },
+    "aimms.widget.type": {
+      "literal": "button"
+    },
+    "name": {
+      "literal": "btn_run3"
+    },
+    "title": {
+      "literal": "RUN EXPONENTIAL SMOOTHING TREND SEASONALITY"
+    }
+  },
+  "widgets/btn_run1_1_1_1": {
+    "action": {
+      "literal": {
+        "type": "procedure",
+        "value": "pr_exampleExponentialSmoothingTrendSeasonality"
+      }
+    },
+    "aimms.widget.type": {
+      "literal": "button"
+    },
+    "name": {
+      "literal": "btn_run4"
+    },
+    "title": {
+      "literal": "Run Moving Average"
+    }
+  },
+  "widgets/btn_run1_1_1_1_1": {
+    "action": {
+      "literal": {
+        "type": "procedure",
+        "value": "pr_exampleWeightedMovingAverage"
+      }
+    },
+    "aimms.widget.type": {
+      "literal": "button"
+    },
+    "name": {
+      "literal": "btn_run5"
+    },
+    "title": {
+      "literal": "Run WEIGHTED MOVING AVERAGE"
+    }
+  },
+  "widgets/btn_run1_1_1_1_2": {
+    "action": {
+      "literal": {
+        "type": "procedure",
+        "value": "pr_exampleSimpleLinearRegressionVCR"
+      }
+    },
+    "aimms.widget.type": {
+      "literal": "button"
+    },
+    "name": {
+      "literal": "btn_run6"
+    },
+    "title": {
+      "literal": "Run SIMPLE LINEAR REGRESSION"
+    }
+  },
+  "widgets/img_homeLogo": {
+    "aimms.widget.type": {
+      "literal": "image"
+    },
+    "contents": {
+      "aimms": {
+        "contents": [
+          "sp_logo"
+        ]
+      }
+    },
+    "name": {
+      "literal": "img_homeLogo"
+    }
+  },
+  "widgets/lnd_producersInformation_1": {
+    "aimms.widget.type": {
+      "literal": "combinationchart"
+    },
+    "axis.y.0.min": {
+      "literal": 0
+    },
+    "color.index": {
+      "literal": "<IDENTIFIER-SET>"
+    },
+    "contents.__display_order__": {
+      "literal": [
+        "contents.0",
+        "contents.1"
+      ]
+    },
+    "contents.0.chart.type": {
+      "literal": "line"
+    },
+    "contents.0.displaydomain": {
+      "literal": {
+        "identifier": "p_historicData",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.0.identifier": {
+      "literal": {
+        "identifier": "p_historicData",
+        "slice": [
+          {
+            "index": "i_producer",
+            "type": "free",
+            "value": "i_producer"
+          }
+        ]
+      }
+    },
+    "contents.1.chart.type": {
+      "literal": "line"
+    },
+    "contents.1.identifier": {
+      "literal": {
+        "identifier": "p_estimateExponentialSmoothing",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.numdecimals": {
+      "literal": 0
+    },
+    "contents.partition": {
+      "literal": {
+        "header": [
+          "i_producer"
+        ],
+        "stacked": [],
+        "grouped": [
+          "<IDENTIFIER-SET>"
+        ],
+        "aggregated": []
+      }
+    },
+    "contents.show.units": {
+      "literal": true
+    },
+    "data.interpolate": {
+      "literal": false
+    },
+    "data.labels.show": {
+      "literal": false
+    },
+    "indices.__display_order__": {
+      "literal": [
+        "indices.0"
+      ]
+    },
+    "legend.show": {
+      "literal": true
+    },
+    "name": {
+      "literal": "cbc_exponentialSmoothing"
+    },
+    "title": {
+      "literal": "Exponential Smoothing"
+    },
+    "yaxis.min": {
+      "literal": 0
+    }
+  },
+  "widgets/lnd_producersInformation_2": {
+    "aimms.widget.type": {
+      "literal": "combinationchart"
+    },
+    "axis.y.0.min": {
+      "literal": 0
+    },
+    "color.index": {
+      "literal": "<IDENTIFIER-SET>"
+    },
+    "contents.__display_order__": {
+      "literal": [
+        "contents.0",
+        "contents.1"
+      ]
+    },
+    "contents.0.chart.type": {
+      "literal": "line"
+    },
+    "contents.0.displaydomain": {
+      "literal": {
+        "identifier": "p_historicData",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.0.identifier": {
+      "literal": {
+        "identifier": "p_historicData",
+        "slice": [
+          {
+            "index": "i_producer",
+            "type": "free",
+            "value": "i_producer"
+          }
+        ]
+      }
+    },
+    "contents.1.chart.type": {
+      "literal": "line"
+    },
+    "contents.1.identifier": {
+      "literal": {
+        "identifier": "p_estimateExponentialSmoothing",
+        "slice": [
+          {
+            "index": "i_day",
+            "type": "free",
+            "value": "i_day"
+          }
+        ]
+      }
+    },
+    "contents.numdecimals": {
+      "literal": 0
+    },
+    "contents.partition": {
+      "literal": {
+        "header": [
+          "i_producer"
+        ],
+        "stacked": [],
+        "grouped": [
+          "<IDENTIFIER-SET>"
+        ],
+        "aggregated": []
+      }
+    },
+    "contents.show.units": {
+      "literal": true
+    },
+    "data.interpolate": {
+      "literal": false
+    },
+    "data.labels.show": {
+      "literal": false
+    },
+    "indices.__display_order__": {
+      "literal": [
+        "indices.0"
+      ]
+    },
+    "legend.show": {
+      "literal": true
+    },
+    "name": {
+      "literal": "cbc_exponentialSmoothing1"
+    },
+    "title": {
+      "literal": "Exponential Smoothing"
+    },
+    "yaxis.min": {
+      "literal": 0
+    }
+  },
+  "widgets/scl_settings1": {
+    "aimms.widget.type": {
+      "literal": "scalar"
+    },
+    "contents": {
+      "aimms": {
+        "contents": [
+          "p_bin_useAutomaticTrendExponentialSmoothing",
+          "p_alphaExponentialSmoothing"
+        ]
+      }
+    },
+    "multi.line": {
+      "literal": 1
+    },
+    "name": {
+      "literal": "scl_settings1"
+    },
+    "title": {
+      "literal": "Settings"
+    }
+  },
+  "widgets/scl_settings1_1": {
+    "aimms.widget.type": {
+      "literal": "scalar"
+    },
+    "contents": {
+      "aimms": {
+        "contents": [
+          "p_bin_useAutomaticTrendExponentialSmoothingTrend",
+          "p_alphaExponentialSmoothingTrend",
+          "p_betaExponentialSmoothingTrend"
+        ]
+      }
+    },
+    "multi.line": {
+      "literal": 1
+    },
+    "name": {
+      "literal": "scl_settings2"
+    },
+    "title": {
+      "literal": "Settings"
+    }
+  },
+  "widgets/scl_settings1_1_1": {
+    "aimms.widget.type": {
+      "literal": "scalar"
+    },
+    "contents": {
+      "aimms": {
+        "contents": [
+          "p_bin_useAutomaticTrendExponentialSmoothingTrendSeasonality",
+          "p_alphaExponentialSmoothingTrendSeasonality",
+          "p_betaExponentialSmoothingTrendSeasonality",
+          "p_gammaExponentialSmoothingTrendSeasonality"
+        ]
+      }
+    },
+    "multi.line": {
+      "literal": 1
+    },
+    "name": {
+      "literal": "scl_settings3"
+    },
+    "title": {
+      "literal": "Settings"
+    }
+  },
+  "widgets/tbl_coeff": {
+    "aimms.widget.type": {
+      "literal": "table"
+    },
+    "contents": {
+      "aimms": {
+        "contents": [
+          "p_coeff"
+        ]
+      }
+    },
+    "contents.partition": {
+      "literal": {
+        "rowHeader": [],
+        "colHeader": [
+          "forecasting::co"
+        ],
+        "aggregated": [
+          "<IDENTIFIER-SET>"
+        ]
+      }
+    },
+    "default.column.width": {
+      "literal": 20
+    },
+    "name": {
+      "literal": "tbl_coeff"
+    },
+    "title": {
+      "literal": "Coeff"
+    }
+  },
+  "widgets/tbl_variationMeasure": {
+    "aimms.widget.type": {
+      "literal": "table"
+    },
+    "contents": {
+      "aimms": {
+        "contents": [
+          "p_variationMeasure"
+        ]
+      }
+    },
+    "contents.partition": {
+      "literal": {
+        "rowHeader": [],
+        "colHeader": [
+          "forecasting::vcs"
+        ],
+        "aggregated": [
+          "<IDENTIFIER-SET>"
+        ]
+      }
+    },
+    "default.column.width": {
+      "literal": 20
+    },
+    "name": {
+      "literal": "tbl_variationMeasure"
+    },
+    "title": {
+      "literal": "Variation Measure"
+    }
+  },
+  "widgets/tbl_weights": {
+    "aimms.widget.type": {
+      "literal": "table"
+    },
+    "contents": {
+      "aimms": {
+        "contents": [
+          "p_numberOfWeights",
+          "p_weights"
+        ]
+      }
+    },
+    "contents.displaydomain": {
+      "literal": {
+        "p_weights": "1"
+      }
+    },
+    "contents.partition": {
+      "literal": {
+        "rowHeader": [
+          "<IDENTIFIER-SET>"
+        ],
+        "colHeader": [
+          "i_wg"
+        ],
+        "aggregated": []
+      }
+    },
+    "contents.totals": {
+      "literal": [
+        {
+          "indexName": "i_wg",
+          "operators": [
+            "sum_only_visible"
+          ]
+        }
+      ]
+    },
+    "name": {
+      "literal": "tbl_settings5"
+    },
+    "title": {
+      "literal": "Settings"
+    }
+  },
+  "widgets/txt_problemDescription": {
+    "aimms.widget.type": {
+      "literal": "text"
+    },
+    "contents": {
+      "literal": "<div><span style=\"font-size: 32px;\"><b>Story</b></span></div><div><br></div><div><span style=\"font-size: 18px;\">In this model we have a set of contracts, where every contract represents an amount of commodity that has to be supplied. The objective is to determine which of the producers will take care of which contract such that the total costs are minimal, under the following conditions:</span></div><div><br></div><ul><li><span style=\"font-size: 18px;\">The demand for every contract is met.</span></li><li><span style=\"font-size: 18px;\">The amount supplied by each producer does not exceed the total amount available for supply.</span></li><li><span style=\"font-size: 18px;\">If a producer supplies a part of a contract then this contribution has a given minimal size.</span></li><li><span style=\"font-size: 18px;\">There is a minimal number of suppliers for every contract.</span></li><li><span style=\"font-size: 18px;\">The total cost associated with all the deliveries is minimal.</span></li></ul><div><br></div>"
+    },
+    "name": {
+      "literal": "txt_problemDescription"
+    }
+  },
+  "widgets/txt_welcome": {
+    "aimms.widget.type": {
+      "literal": "text"
+    },
+    "contents": {
+      "literal": "<div style=\"text-align: center;\">&nbsp;</div><div><b style=\"font-size: 32px;\">Welcome!</b></div><div><br></div><div><span style=\"font-size: 18px;\">You are in an AIMMS Example. Feel free to play around and create something more in this app!</span></div><div><span style=\"font-size: 18px;\">&nbsp;</span></div><div><span style=\"font-size: 18px;\">If you do, please fork this repository and commit your changes. </span><b style=\"font-size: 18px;\">This ensures our GitHub stays up-to-date for the entire community!</b></div><div><br></div><div><span style=\"font-size: 18px;\">You can also check our other interactive resources:</span></div><div><br></div><ul><li><span style=\"font-size: 18px;\">In the Online </span><a href=\"https://community.aimms.com/\" style=\"font-size: 18px;\" target=\"_blank\">Community</a><span style=\"font-size: 18px;\">, talk to other developers and AIMMSians about the product, modeling, use cases, and more.</span></li><li><span style=\"font-size: 18px;\">In the </span><a href=\"https://academy.aimms.com/\" style=\"font-size: 18px;\" target=\"_blank\">Academy</a><span style=\"font-size: 18px;\">, learn new skills and challenge yourself. We are busy creating new courses, so keep an eye out!</span></li></ul><div><br></div><div><span style=\"font-size: 18px;\">For questions that can't be posted on the community, contact us at </span><i style=\"background-color: rgb(255, 255, 204); font-size: 18px;\">support@aimms.com</i><span style=\"font-size: 18px;\">.</span></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div>"
+    },
+    "name": {
+      "literal": "txt_welcome"
+    }
+  }
+}

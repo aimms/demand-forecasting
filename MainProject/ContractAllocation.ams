@@ -1,0 +1,491 @@
+## ams_version=1.0
+
+Model Main_ContractAllocation {
+	Section Data_Model {
+		Section Quantities_and_Units {
+			Comment: {
+				"This section contains all the units and quantities that are added automatically by AIMMS.
+				It is recommended to declare all your quantities here."
+			}
+			Quantity SI_Time_Duration {
+				BaseUnit: s;
+				Conversions: {
+					minute->s : #-># * 60,
+					day->s : #-># * 86400
+				}
+				Comment: {
+					"Expresses the value for the duration of periods.
+					
+					The unit s has been added automatically because it is a required unit for AimmsWebUI.
+					
+					The unit minute has been added automatically because it is a required unit for AimmsWebUI."
+				}
+			}
+			Quantity SI_Mass {
+				BaseUnit: kg;
+				Comment: "Expresses the value for the amount of matter.";
+			}
+			Quantity Q_Monetary {
+				BaseUnit: $;
+			}
+		}
+		Section Calendars {
+			Calendar Cal_Days {
+				Index: i_day;
+				Parameter: e_day;
+				Unit: day;
+				BeginDate: "2020-01-01";
+				EndDate: "2020-06-30";
+				TimeslotFormat: "%c%y-%m-%d";
+			}
+		}
+		Section Inputs {
+			Parameter p_historicData {
+				IndexDomain: i_day;
+				Definition: {
+					data 
+					{ 2020-01-01 : 112,  2020-01-02 : 118,  2020-01-03 : 132,  2020-01-04 : 129,  2020-01-05 : 121,  2020-01-06 : 135,
+					  2020-01-07 : 148,  2020-01-08 : 148,  2020-01-09 : 136,  2020-01-10 : 119,  2020-01-11 : 104,  2020-01-12 : 118,
+					  2020-01-13 : 115,  2020-01-14 : 126,  2020-01-15 : 141,  2020-01-16 : 135,  2020-01-17 : 125,  2020-01-18 : 149,
+					  2020-01-19 : 170,  2020-01-20 : 170,  2020-01-21 : 158,  2020-01-22 : 133,  2020-01-23 : 114,  2020-01-24 : 140,
+					  2020-01-25 : 145,  2020-01-26 : 150,  2020-01-27 : 178,  2020-01-28 : 163,  2020-01-29 : 172,  2020-01-30 : 178,
+					  2020-01-31 : 199,  2020-02-01 : 199,  2020-02-02 : 184,  2020-02-03 : 162,  2020-02-04 : 146,  2020-02-05 : 166,
+					  2020-02-06 : 171,  2020-02-07 : 180,  2020-02-08 : 193,  2020-02-09 : 181,  2020-02-10 : 183,  2020-02-11 : 218,
+					  2020-02-12 : 230,  2020-02-13 : 242,  2020-02-14 : 209,  2020-02-15 : 191,  2020-02-16 : 172,  2020-02-17 : 194,
+					  2020-02-18 : 196,  2020-02-19 : 196,  2020-02-20 : 236,  2020-02-21 : 235,  2020-02-22 : 229,  2020-02-23 : 243,
+					  2020-02-24 : 264,  2020-02-25 : 272,  2020-02-26 : 237,  2020-02-27 : 211,  2020-02-28 : 180,  2020-02-29 : 201,
+					  2020-03-01 : 204,  2020-03-02 : 188,  2020-03-03 : 235,  2020-03-04 : 227,  2020-03-05 : 234,  2020-03-06 : 264,
+					  2020-03-07 : 302,  2020-03-08 : 293,  2020-03-09 : 259,  2020-03-10 : 229,  2020-03-11 : 203,  2020-03-12 : 229,
+					  2020-03-13 : 242,  2020-03-14 : 233,  2020-03-15 : 267,  2020-03-16 : 269,  2020-03-17 : 270,  2020-03-18 : 315,
+					  2020-03-19 : 364,  2020-03-20 : 347,  2020-03-21 : 312,  2020-03-22 : 274,  2020-03-23 : 237,  2020-03-24 : 278,
+					  2020-03-25 : 284,  2020-03-26 : 277,  2020-03-27 : 317,  2020-03-28 : 313,  2020-03-29 : 318,  2020-03-30 : 374,
+					  2020-03-31 : 413,  2020-04-01 : 405,  2020-04-02 : 355,  2020-04-03 : 306,  2020-04-04 : 271,  2020-04-05 : 306,
+					  2020-04-06 : 315,  2020-04-07 : 301,  2020-04-08 : 356,  2020-04-09 : 348,  2020-04-10 : 355,  2020-04-11 : 422,
+					  2020-04-12 : 465,  2020-04-13 : 467,  2020-04-14 : 404,  2020-04-15 : 347,  2020-04-16 : 305,  2020-04-17 : 336,
+					  2020-04-18 : 340,  2020-04-19 : 318,  2020-04-20 : 362,  2020-04-21 : 348,  2020-04-22 : 363,  2020-04-23 : 435,
+					  2020-04-24 : 491,  2020-04-25 : 505,  2020-04-26 : 404,  2020-04-27 : 359,  2020-04-28 : 310,  2020-04-29 : 337,
+					  2020-04-30 : 360,  2020-05-01 : 342,  2020-05-02 : 406,  2020-05-03 : 396,  2020-05-04 : 420,  2020-05-05 : 472,
+					  2020-05-06 : 548,  2020-05-07 : 559,  2020-05-08 : 463,  2020-05-09 : 407,  2020-05-10 : 362,  2020-05-11 : 405,
+					  2020-05-12 : 417,  2020-05-13 : 391,  2020-05-14 : 419,  2020-05-15 : 461,  2020-05-16 : 472,  2020-05-17 : 535,
+					  2020-05-18 : 622,  2020-05-19 : 606,  2020-05-20 : 508,  2020-05-21 : 461,  2020-05-22 : 390,  2020-05-23 : 432 }
+				}
+			}
+		}
+		Procedure pr_runAll {
+			Body: {
+				
+				RunAllProcedures(Forecasting_Functions);
+			}
+		}
+		Section Forecasting_Functions {
+			Section ExponentialSmoothing {
+				Parameter p_estimateExponentialSmoothing {
+					IndexDomain: i_day;
+				}
+				Parameter p_alphaExponentialSmoothing;
+				Parameter p_bin_useAutomaticTrendExponentialSmoothing {
+					Range: binary;
+					InitialData: 1;
+				}
+				Procedure pr_exampleExponentialSmoothing {
+					Body: {
+						empty p_estimateExponentialSmoothingTrendSeasonality;
+						
+						if p_bin_useAutomaticTrendExponentialSmoothing then
+						
+						    forecasting::ExponentialSmoothingTune(
+						        dataValues     :  p_historicData, 
+						        noObservations :  count(i_day | p_historicData(i_day)), 
+						        alpha          :  p_alphaExponentialSmoothing);
+						
+						elseif not p_alphaExponentialSmoothing then
+						
+						    webui::RequestPerformWebUIDialog(
+						        title   :  "Settings", 
+						        message :  "One or more settings are empty, set a value or activate the automatic tune.", 
+						        actions :  s_OK, 
+						        onDone  :  'webui::NoOp1');
+						    return;
+						endif;
+						
+						forecasting::ExponentialSmoothing(
+						    dataValues         :  p_historicData,
+						    estimates          :  p_estimateExponentialSmoothing,
+						    noObservations     :  count(i_day | p_historicData(i_day)),
+						    alpha              :  p_alphaExponentialSmoothing);
+					}
+					Set s_OK {
+						InitialData: {
+							{'OK'}
+						}
+					}
+				}
+			}
+			Section ExponentialSmoothingTrend {
+				Parameter p_estimateExponentialSmoothingTrend {
+					IndexDomain: i_day;
+				}
+				Parameter p_alphaExponentialSmoothingTrend;
+				Parameter p_betaExponentialSmoothingTrend;
+				Parameter p_bin_useAutomaticTrendExponentialSmoothingTrend {
+					Range: binary;
+					InitialData: 1;
+				}
+				Procedure pr_exampleExponentialSmoothingTrend {
+					Body: {
+						empty p_estimateExponentialSmoothingTrend;
+						
+						if p_bin_useAutomaticTrendExponentialSmoothingTrend then
+						
+						    forecasting::ExponentialSmoothingTrendTune(
+						        dataValues     :  p_historicData, 
+						        noObservations :  count(i_day | p_historicData(i_day)), 
+						        alpha          :  p_alphaExponentialSmoothingTrend, 
+						        beta           :  p_betaExponentialSmoothingTrend);
+						
+						elseif not p_alphaExponentialSmoothingTrend
+						        or not p_betaExponentialSmoothingTrend then
+						
+						    webui::RequestPerformWebUIDialog(
+						        title   :  "Settings", 
+						        message :  "One or more settings are empty, set a value or activate the automatic tune.", 
+						        actions :  s_OK, 
+						        onDone  :  'webui::NoOp1');
+						    return;
+						endif;
+						
+						forecasting::ExponentialSmoothingTrend(
+						    dataValues         :  p_historicData,
+						    estimates          :  p_estimateExponentialSmoothingTrend,
+						    noObservations     :  count(i_day | p_historicData(i_day)),
+						    alpha              :  p_alphaExponentialSmoothingTrend,
+						    beta               :  p_betaExponentialSmoothingTrend);
+					}
+					Set s_OK {
+						InitialData: {
+							{'OK'}
+						}
+					}
+				}
+			}
+			Section ExponentialSmoothingTrendSeasonality {
+				Parameter p_estimateExponentialSmoothingTrendSeasonality {
+					IndexDomain: i_day;
+				}
+				Parameter p_alphaExponentialSmoothingTrendSeasonality;
+				Parameter p_betaExponentialSmoothingTrendSeasonality;
+				Parameter p_gammaExponentialSmoothingTrendSeasonality;
+				Parameter p_bin_useAutomaticTrendExponentialSmoothingTrendSeasonality {
+					Range: binary;
+					InitialData: 1;
+				}
+				Procedure pr_exampleExponentialSmoothingTrendSeasonality {
+					Body: {
+						empty p_estimateExponentialSmoothingTrendSeasonality;
+						
+						if p_bin_useAutomaticTrendExponentialSmoothingTrendSeasonality then
+						
+						    forecasting::ExponentialSmoothingTrendSeasonalityTune(
+						        dataValues     :  p_historicData, 
+						        noObservations :  count(i_day | p_historicData(i_day)), 
+						        alpha          :  p_alphaExponentialSmoothingTrendSeasonality, 
+						        beta           :  p_betaExponentialSmoothingTrendSeasonality, 
+						        gamma          :  p_gammaExponentialSmoothingTrendSeasonality, 
+						        periodLength   :  12);
+						
+						elseif not p_alphaExponentialSmoothingTrendSeasonality 
+						        or not p_betaExponentialSmoothingTrendSeasonality
+						        or not p_gammaExponentialSmoothingTrendSeasonality then
+						
+						    webui::RequestPerformWebUIDialog(
+						        title   :  "Settings", 
+						        message :  "One or more settings are empty, set a value or activate the automatic tune.", 
+						        actions :  s_OK, 
+						        onDone  :  'webui::NoOp1');
+						
+						    return;
+						endif;
+						
+						forecasting::ExponentialSmoothingTrendSeasonality(
+						    dataValues         :  p_historicData,
+						    estimates          :  p_estimateExponentialSmoothingTrendSeasonality(i_day),
+						    noObservations     :  count(i_day | p_historicData(i_day)),
+						    alpha              :  p_alphaExponentialSmoothingTrendSeasonality,
+						    beta               :  p_betaExponentialSmoothingTrendSeasonality,
+						    gamma              :  p_gammaExponentialSmoothingTrendSeasonality,
+						    periodLength       :  12);
+					}
+					Set s_OK {
+						InitialData: {
+							{'OK'}
+						}
+					}
+				}
+			}
+			Section MovingAverage {
+				Parameter p_estimateMovingAverage {
+					IndexDomain: i_day;
+				}
+				Procedure pr_exampleMovingAverage {
+					Body: {
+						empty p_estimateMovingAverage;
+						
+						forecasting::MovingAverage(
+						    dataValues         :  p_historicData(i_day),
+						    estimates          :  p_estimateMovingAverage(i_day),
+						    noObservations     :  count(i_day | p_historicData(i_day)), 
+						    noAveragingPeriods :  12);
+					}
+				}
+			}
+			Section WeightedMovingAverage {
+				Parameter p_estimateWeightedMovingAverage {
+					IndexDomain: i_day;
+				}
+				Set s_def_weights {
+					Index: i_wg;
+					Definition: {
+						{1..p_numberOfWeights}
+					}
+				}
+				Parameter p_numberOfWeights {
+					InitialData: 4;
+				}
+				Parameter p_weights {
+					IndexDomain: i_wg;
+					InitialData: data { 1 : 0.1, 2 : 0.2, 3: 0.3, 4: 0.4 };
+				}
+				Procedure pr_exampleWeightedMovingAverage {
+					Body: {
+						empty p_estimateWeightedMovingAverage;
+						
+						forecasting::WeightedMovingAverage(
+						    dataValues         :  p_historicData,
+						    estimates          :  p_estimateWeightedMovingAverage(i_day),
+						    noObservations     :  count(i_day | p_historicData(i_day)), 
+						    weights            :  p_weights,
+						    noAveragingPeriods :  p_numberOfWeights);
+					}
+				}
+			}
+			Section SimpleLinearRegression {
+				Set s_def_observations {
+					SubsetOf: Integers;
+					Index: i_ob;
+					Definition: {
+						{1..10}
+					}
+				}
+				Parameter p_def_machineProduction {
+					IndexDomain: i_ob;
+					Definition: {
+						data{
+						    1  : 10,
+						    2  : 20,
+						    3  : 30,
+						    4  : 40,
+						    5  : 45,
+						    6  : 50,
+						    7  : 60,
+						    8  : 55,
+						    9  : 70,
+						    10 : 40}
+					}
+				}
+				Parameter p_def_costOfProduction {
+					IndexDomain: i_ob;
+					Definition: {
+						data{
+						   1   :  257.40,
+						   2   :  601.60,
+						   3   :  782.00,
+						   4   :  765.40,
+						   5   :  895.50,
+						   6   : 1133.00,
+						   7   : 1152.80,
+						   8   : 1132.70,
+						   9   : 1459.20,
+						   10  :  970.10}
+					}
+				}
+				Parameter p_coeff {
+					IndexDomain: forecasting::co;
+				}
+				Parameter p_variationMeasure {
+					IndexDomain: forecasting::vcs;
+				}
+				Parameter p_costEstimate {
+					IndexDomain: i_ob;
+				}
+				Parameter p_costError {
+					IndexDomain: i_ob;
+				}
+				Procedure pr_exampleSimpleLinearRegressionVCR {
+					Body: {
+						empty p_costError, p_costEstimate;
+						
+						forecasting::SimpleLinearRegressionVCR(
+						                 xIndepVarValue        :  p_def_machineProduction,
+						                 yDepVarValue          :  p_def_costOfProduction,
+						                 LRcoeff               :  p_coeff,
+						                 VariationComp         :  p_variationMeasure,
+						                 yEstimates            :  p_costEstimate,
+						                 eResiduals            :  p_costError);
+					}
+					Parameter p_loc_alpha;
+					Parameter p_loc_beta;
+				}
+			}
+		}
+	}
+	Section UI_Declarations {
+		Procedure pr_empty;
+		StringParameter sp_logo {
+			Definition: "aimms_logo.png";
+		}
+		Section Workflow {
+			StringParameter sp_myWorkflows {
+				IndexDomain: (webui::indexWorkflowOrder,webui::indexWorkflowSpec);
+			}
+			StringParameter sp_myWorkflowSteps {
+				IndexDomain: (webui::indexWorkflowOrder,webui::indexNoOfPages,webui::indexWorkflowPageSpec);
+				Definition: {
+					data 
+					{ ( 1, 1, displayText       ) : "Welcome",
+					  ( 1, 1, icon              ) : "aimms-happy",
+					  ( 1, 1, pageId            ) : "home",
+					  ( 1, 1, tooltip           ) : "welcome",
+					  ( 1, 1, workflowPageState ) : "active",
+					  ( 1, 1, pageDataState     ) : "Incomplete",
+					  ( 1, 1, redirectPageId    ) : "home",
+					  ( 1, 2, displayText       ) : "Story",
+					  ( 1, 2, icon              ) : "aimms-lamp5",
+					  ( 1, 2, pageId            ) : "problem_description",
+					  ( 1, 2, tooltip           ) : "Problem description",
+					  ( 1, 2, workflowPageState ) : "active",
+					  ( 1, 2, pageDataState     ) : "Incomplete",
+					  ( 1, 2, redirectPageId    ) : "home",
+					  ( 1, 3, displayText       ) : "Exponential Smoothing ",
+					  ( 1, 3, icon              ) : "aimms-seven-segment-1",
+					  ( 1, 3, pageId            ) : "exponential_smoothing",
+					  ( 1, 3, tooltip           ) : "Input data",
+					  ( 1, 3, workflowPageState ) : "active",
+					  ( 1, 3, pageDataState     ) : "Incomplete",
+					  ( 1, 3, redirectPageId    ) : "home",
+					  ( 1, 4, displayText       ) : "Exponential Smoothing Trend",
+					  ( 1, 4, icon              ) : "aimms-seven-segment-2",
+					  ( 1, 4, pageId            ) : "exponential_smoothing_trend",
+					  ( 1, 4, workflowPageState ) : "active",
+					  ( 1, 4, pageDataState     ) : "Incomplete",
+					  ( 1, 4, redirectPageId    ) : "home",
+					  ( 1, 5, displayText       ) : "Exponential Smoothing Trend Seasonality",
+					  ( 1, 5, icon              ) : "aimms-seven-segment-3",
+					  ( 1, 5, pageId            ) : "exponential_smoothing_trend_seasonality",
+					  ( 1, 5, workflowPageState ) : "active",
+					  ( 1, 5, pageDataState     ) : "Incomplete",
+					  ( 1, 5, redirectPageId    ) : "home",
+					  ( 1, 6, displayText       ) : "Moving Average",
+					  ( 1, 6, icon              ) : "aimms-seven-segment-4",
+					  ( 1, 6, pageId            ) : "moving_average",
+					  ( 1, 6, workflowPageState ) : "active",
+					  ( 1, 6, pageDataState     ) : "Incomplete",
+					  ( 1, 6, redirectPageId    ) : "home",
+					  ( 1, 7, displayText       ) : "Weighted Moving Average",
+					  ( 1, 7, icon              ) : "aimms-seven-segment-5",
+					  ( 1, 7, pageId            ) : "weighted_moving_average",
+					  ( 1, 7, workflowPageState ) : "active",
+					  ( 1, 7, pageDataState     ) : "Incomplete",
+					  ( 1, 7, redirectPageId    ) : "home",
+					  ( 1, 8, displayText       ) : "Simple Linear Regression",
+					  ( 1, 8, icon              ) : "aimms-seven-segment-6",
+					  ( 1, 8, pageId            ) : "simple_linear_regression",
+					  ( 1, 8, workflowPageState ) : "active",
+					  ( 1, 8, pageDataState     ) : "Incomplete",
+					  ( 1, 8, redirectPageId    ) : "home",
+					  ( 1, 9, displayText       ) : "Dashboard",
+					  ( 1, 9, icon              ) : "aimms-equalizer2",
+					  ( 1, 9, pageId            ) : "inputs",
+					  ( 1, 9, tooltip           ) : "Input data",
+					  ( 1, 9, workflowPageState ) : "active",
+					  ( 1, 9, pageDataState     ) : "Incomplete",
+					  ( 1, 9, redirectPageId    ) : "home" }
+				}
+			}
+		}
+		Section Pages {
+			Section Dashboard_Page {
+				DeclarationSection Dashboard_Page_Action {
+					StringParameter sp_dashboardPrimaryActions {
+						IndexDomain: webui::indexPageActionSpec;
+						Definition: data { displaytext : "Run All",  procedure : "pr_runAll",  state : "active" };
+					}
+				}
+			}
+		}
+		Section FlagsIdentifier {
+			StringParameter sp_readOnlyFlag {
+				Definition: "readonly";
+			}
+		}
+	}
+	Section Toolkit {
+		Procedure RunAllProcedures {
+			Arguments: (s_in_sectionToRun);
+			Body: {
+				s_loc_proceduresToRun := s_in_sectionToRun * AllProcedures;
+				
+				ordered for i_pr do
+				    ep_loc_procedureToRun := i_pr;
+				    apply(ep_loc_procedureToRun);
+				endfor;
+			}
+			Set s_loc_proceduresToRun {
+				SubsetOf: AllProcedures;
+				Index: i_pr;
+			}
+			Set s_in_sectionToRun {
+				SubsetOf: AllIdentifiers;
+				Property: Input;
+			}
+			ElementParameter ep_loc_procedureToRun {
+				Range: s_loc_proceduresToRun;
+				Default: 'pr_empty';
+			}
+		}
+	}
+	Procedure MainInitialization;
+	Procedure PostMainInitialization {
+		Comment: {
+			"Add initialization statements here that require that the libraries are already initialized properly,
+			or add statements that require the Data Management module to be initialized."
+		}
+	}
+	Procedure MainExecution {
+		Set s_loc_action {
+			InitialData: {
+				{'ok'}
+			}
+		}
+	}
+	Procedure PreMainTermination {
+		Body: {
+			return DataManagementExit();
+		}
+		Comment: {
+			"Add termination statements here that require all libraries to be still alive.
+			Return 1 if you allow the termination sequence to continue.
+			Return 0 if you want to cancel the termination sequence."
+		}
+	}
+	Procedure MainTermination {
+		Body: {
+			return 1;
+		}
+		Comment: {
+			"Add termination statements here that do not require all libraries to be still alive.
+			Return 1 to allow the termination sequence to continue.
+			Return 0 if you want to cancel the termination sequence.
+			It is recommended to only use the procedure PreMainTermination to cancel the termination sequence and let this procedure always return 1."
+		}
+	}
+}

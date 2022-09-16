@@ -1,0 +1,4 @@
+/*Link color*/
+.ql-snow a {  
+    color: var(--primaryDark);
+  }

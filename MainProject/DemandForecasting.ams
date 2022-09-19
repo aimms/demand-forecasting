@@ -1,6 +1,6 @@
 ## ams_version=1.0
 
-Model Main_ContractAllocation {
+Model Main_DemandForecasting {
 	Section Data_Model {
 		Section Quantities_and_Units {
 			Comment: {

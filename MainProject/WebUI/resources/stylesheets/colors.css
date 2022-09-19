@@ -1,0 +1,24 @@
+:root {
+  --secondaryLightest: #ECECFD;
+  --secondaryLight: #7883b4;
+  --secondary: #4E598C;
+  --primaryDark: #FF8C42;
+  --primary: #FCAF58;
+  --primaryLight: #F9C784;
+
+  --bg_app-logo: 15px 50% / 50px 50px no-repeat url(/app-resources/resources/images/forecast.png);
+  --spacing_app-logo_width: 60px;
+
+  --color_border-divider_themed: var(--secondary);
+  --color_text_edit-select-link: var(--secondary);
+  --color_text_edit-select-link_hover: var(--primary);
+  --color_bg_edit-select-link_inverted: var(--secondary);
+  --color_bg_button_primary: var(--secondary);
+  --color_bg_button_primary_hover: var(--secondaryLight);
+  --color_text_button_secondary: var(--secondary);
+  --border_button_secondary: 1px solid var(--secondary);
+  --color_text_button_secondary_hover: var(--primary);
+  --border_button_secondary_hover: 1px solid var(--primary);
+  --color_bg_widget-header: var(--primaryLight);
+  --border_widget-header: 3px solid var(--primaryDark);
+}

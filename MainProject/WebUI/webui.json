@@ -2102,6 +2102,14 @@
         ]
       }
     },
+    "custom.column.widths": {
+      "literal": [
+        {
+          "type": "rowHeader",
+          "width": 20.95
+        }
+      ]
+    },
     "default.column.width": {
       "literal": 20
     },
@@ -2133,6 +2141,14 @@
           "<IDENTIFIER-SET>"
         ]
       }
+    },
+    "custom.column.widths": {
+      "literal": [
+        {
+          "type": "rowHeader",
+          "width": 23.21
+        }
+      ]
     },
     "default.column.width": {
       "literal": 20
@@ -2182,6 +2198,15 @@
         }
       ]
     },
+    "custom.column.widths": {
+      "literal": [
+        {
+          "type": "rowHeader",
+          "colKey": "<IDENTIFIER-SET>",
+          "width": 31.23
+        }
+      ]
+    },
     "name": {
       "literal": "tbl_settings5"
     },
@@ -2194,7 +2219,7 @@
       "literal": "text"
     },
     "contents": {
-      "literal": "<div><span style=\"font-size: 32px;\"><b>Story</b></span></div><div><br></div><div><span style=\"font-size: 18px;\">In this model we have a set of contracts, where every contract represents an amount of commodity that has to be supplied. The objective is to determine which of the producers will take care of which contract such that the total costs are minimal, under the following conditions:</span></div><div><br></div><ul><li><span style=\"font-size: 18px;\">The demand for every contract is met.</span></li><li><span style=\"font-size: 18px;\">The amount supplied by each producer does not exceed the total amount available for supply.</span></li><li><span style=\"font-size: 18px;\">If a producer supplies a part of a contract then this contribution has a given minimal size.</span></li><li><span style=\"font-size: 18px;\">There is a minimal number of suppliers for every contract.</span></li><li><span style=\"font-size: 18px;\">The total cost associated with all the deliveries is minimal.</span></li></ul><div><br></div>"
+      "literal": "<div><span style=\"font-size: 32px;\"><b>Story</b></span></div><div><br></div><div><span style=\"font-size: 18px;\">Imagine you have a small cookie factory. And for a few months, you stored the demand data you had each day and now, you want to use this data in a way to forecast your possible future demand. </span></div><div><span style=\"font-size: 18px;\">This analysis will create understanding in how your demand will behaviour and decrease waste.</span></div><div><br></div><div><span style=\"font-size: 18px;\">However, since you are not really sure which algorithm to use, your goal is to create a dashboard with all algorithm available to choose the best fit for your factory.</span></div><div><br></div>"
     },
     "name": {
       "literal": "txt_problemDescription"

@@ -1,0 +1,39 @@
+a.page-link[href$="Story"]:before {
+  content: "";
+  display: block;
+  background: url("img/idea.png") no-repeat;
+  width: 20px;
+  height: 20px;
+  float: left;
+  margin: 0 6px 0 0;
+}
+
+a.page-link[href$="Dashboard"]:before {
+  content: "";
+  display: block;
+  background: url("img/dash.png") no-repeat;
+  width: 20px;
+  height: 20px;
+  float: left;
+  margin: 0 6px 0 0;
+}
+
+a.page-link[href$="home"]:before {
+  content: "";
+  display: block;
+  background: url("img/home.png") no-repeat;
+  width: 20px;
+  height: 20px;
+  float: left;
+  margin: 0 6px 0 0;
+}
+
+a.page-link[href$="Examples"]:before {
+  content: "";
+  display: block;
+  background: url("img/example.png") no-repeat;
+  width: 20px;
+  height: 20px;
+  float: left;
+  margin: 0 6px 0 0;
+}

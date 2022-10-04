@@ -4,7 +4,7 @@
 
 **Mirrored in:** https://github.com/aimms/demand-forecasting
 
-**How-to:** https://how-to.aimms.com/Articles/383/383-contract-allocation.html
+**How-to:** https://how-to.aimms.com/Articles/550/550-demand-forecasting.html
 
 ## Story
 

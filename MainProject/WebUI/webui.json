@@ -1749,7 +1749,7 @@
     "action": {
       "literal": {
         "type": "procedure",
-        "value": "pr_exampleExponentialSmoothingTrendSeasonality"
+        "value": "pr_exampleMovingAverage"
       }
     },
     "aimms.widget.type": {

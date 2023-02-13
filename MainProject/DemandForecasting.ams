@@ -82,7 +82,9 @@ Model Main_DemandForecasting {
 				Parameter p_estimateExponentialSmoothing {
 					IndexDomain: i_day;
 				}
-				Parameter p_alphaExponentialSmoothing;
+				Parameter p_alphaExponentialSmoothing {
+					InitialData: 0;
+				}
 				Parameter p_bin_useAutomaticTrendExponentialSmoothing {
 					Range: binary;
 					InitialData: 1;
@@ -125,8 +127,12 @@ Model Main_DemandForecasting {
 				Parameter p_estimateExponentialSmoothingTrend {
 					IndexDomain: i_day;
 				}
-				Parameter p_alphaExponentialSmoothingTrend;
-				Parameter p_betaExponentialSmoothingTrend;
+				Parameter p_alphaExponentialSmoothingTrend {
+					InitialData: 0;
+				}
+				Parameter p_betaExponentialSmoothingTrend {
+					InitialData: 0;
+				}
 				Parameter p_bin_useAutomaticTrendExponentialSmoothingTrend {
 					Range: binary;
 					InitialData: 1;
@@ -172,9 +178,15 @@ Model Main_DemandForecasting {
 				Parameter p_estimateExponentialSmoothingTrendSeasonality {
 					IndexDomain: i_day;
 				}
-				Parameter p_alphaExponentialSmoothingTrendSeasonality;
-				Parameter p_betaExponentialSmoothingTrendSeasonality;
-				Parameter p_gammaExponentialSmoothingTrendSeasonality;
+				Parameter p_alphaExponentialSmoothingTrendSeasonality {
+					InitialData: 0;
+				}
+				Parameter p_betaExponentialSmoothingTrendSeasonality {
+					InitialData: 0;
+				}
+				Parameter p_gammaExponentialSmoothingTrendSeasonality {
+					InitialData: 0;
+				}
 				Parameter p_bin_useAutomaticTrendExponentialSmoothingTrendSeasonality {
 					Range: binary;
 					InitialData: 1;
@@ -243,6 +255,7 @@ Model Main_DemandForecasting {
 					IndexDomain: i_day;
 				}
 				Set s_def_weights {
+					SubsetOf: Integers;
 					Index: i_wg;
 					Definition: {
 						{1..p_numberOfWeights}

@@ -1,9 +1,0 @@
-/*Link color*/
-.ql-snow a {  
-    color: var(--primaryDark);
-}
-
-/*Change checkbox color*/
-input.boolean-cell-editor-contents {
-  accent-color: var(--secondary);
-}

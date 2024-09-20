@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<References AIMMS_Version="4.91.5.4 (x64)">
+<References AIMMS_Version="24.5.8.5 (x64)">
 	<MainProject Path="MainProject" />
 	<Library System="true" Path="AimmsPro" />
-	<Library System="true" Path="AimmsWebUI" />
-	<RepositoryLibrary UUID="1FFE36AA-0AFE-44F6-B59F-972E60F14827" Name="Forecasting" Version="1.1.1.39" />
+	<RepositoryLibrary UUID="1FFE36AA-0AFE-44F6-B59F-972E60F14827" Name="Forecasting" Version="24.0.0.5" />
+	<RepositoryLibrary UUID="69378F70-E906-486F-8F2C-1D606AEB9669" Name="WebUI" Version="24.10.3.3" />
 </References>

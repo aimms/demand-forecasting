@@ -4,6 +4,27 @@
     "aimms.widget.type": {
       "literal": "application"
     },
+    "browser.language": {
+      "aimms": {
+        "contents": [
+          "webui::ClientBrowserLanguage"
+        ]
+      }
+    },
+    "browser.name": {
+      "aimms": {
+        "contents": [
+          "webui::ClientBrowserName"
+        ]
+      }
+    },
+    "browser.timezone": {
+      "aimms": {
+        "contents": [
+          "webui::BrowserTimeZone"
+        ]
+      }
+    },
     "browsername": {
       "aimms": {
         "contents": [
@@ -855,6 +876,9 @@
     },
     "title": {
       "literal": "Exponential Smoothing Trend"
+    },
+    "views": {
+      "literal": {}
     }
   },
   "widgets/bbc_productionCost_10": {
@@ -948,6 +972,9 @@
     },
     "title": {
       "literal": "Simple Linear Regression"
+    },
+    "views": {
+      "literal": {}
     }
   },
   "widgets/bbc_productionCost_2": {
@@ -1041,6 +1068,9 @@
     },
     "title": {
       "literal": "Exponential Smoothing Trend Seasonality"
+    },
+    "views": {
+      "literal": {}
     }
   },
   "widgets/bbc_productionCost_3": {
@@ -1134,6 +1164,9 @@
     },
     "title": {
       "literal": "Moving Average"
+    },
+    "views": {
+      "literal": {}
     }
   },
   "widgets/bbc_productionCost_4": {
@@ -1227,6 +1260,9 @@
     },
     "title": {
       "literal": "Weighted Moving Average"
+    },
+    "views": {
+      "literal": {}
     }
   },
   "widgets/bbc_productionCost_5": {
@@ -1320,6 +1356,9 @@
     },
     "title": {
       "literal": "Simple Linear Regression"
+    },
+    "views": {
+      "literal": {}
     }
   },
   "widgets/bbc_productionCost_6": {
@@ -1413,6 +1452,9 @@
     },
     "title": {
       "literal": "Exponential Smoothing Trend"
+    },
+    "views": {
+      "literal": {}
     }
   },
   "widgets/bbc_productionCost_7": {
@@ -1506,6 +1548,9 @@
     },
     "title": {
       "literal": "Exponential Smoothing Trend Seasonality"
+    },
+    "views": {
+      "literal": {}
     }
   },
   "widgets/bbc_productionCost_8": {
@@ -1599,6 +1644,9 @@
     },
     "title": {
       "literal": "Moving Average"
+    },
+    "views": {
+      "literal": {}
     }
   },
   "widgets/bbc_productionCost_9": {
@@ -1692,6 +1740,9 @@
     },
     "title": {
       "literal": "Weighted Moving Average"
+    },
+    "views": {
+      "literal": {}
     }
   },
   "widgets/btn_run1": {
@@ -1907,6 +1958,9 @@
     "title": {
       "literal": "Exponential Smoothing"
     },
+    "views": {
+      "literal": {}
+    },
     "yaxis.min": {
       "literal": 0
     }
@@ -2007,6 +2061,9 @@
     "title": {
       "literal": "Exponential Smoothing"
     },
+    "views": {
+      "literal": {}
+    },
     "yaxis.min": {
       "literal": 0
     }
@@ -2031,6 +2088,9 @@
     },
     "title": {
       "literal": "Settings"
+    },
+    "views": {
+      "literal": {}
     }
   },
   "widgets/scl_settings1_1": {
@@ -2054,6 +2114,9 @@
     },
     "title": {
       "literal": "Settings"
+    },
+    "views": {
+      "literal": {}
     }
   },
   "widgets/scl_settings1_1_1": {
@@ -2078,6 +2141,9 @@
     },
     "title": {
       "literal": "Settings"
+    },
+    "views": {
+      "literal": {}
     }
   },
   "widgets/tbl_coeff": {
@@ -2118,6 +2184,9 @@
     },
     "title": {
       "literal": "Coeff"
+    },
+    "views": {
+      "literal": {}
     }
   },
   "widgets/tbl_variationMeasure": {
@@ -2158,6 +2227,9 @@
     },
     "title": {
       "literal": "Variation Measure"
+    },
+    "views": {
+      "literal": {}
     }
   },
   "widgets/tbl_weights": {
@@ -2212,6 +2284,9 @@
     },
     "title": {
       "literal": "Settings"
+    },
+    "views": {
+      "literal": {}
     }
   },
   "widgets/txt_problemDescription": {

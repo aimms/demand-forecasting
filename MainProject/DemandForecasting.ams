@@ -370,7 +370,6 @@ Model Main_DemandForecasting {
 					  ( 1, 1, tooltip           ) : "welcome",
 					  ( 1, 1, workflowPageState ) : "active",
 					  ( 1, 1, pageDataState     ) : "Incomplete",
-					  ( 1, 1, redirectPageId    ) : "home",
 					  ( 1, 2, displayText       ) : "Story",
 					  ( 1, 2, icon              ) : "aimms-lamp5",
 					  ( 1, 2, pageId            ) : "problem_description",

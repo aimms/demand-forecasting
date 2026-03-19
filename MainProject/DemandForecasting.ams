@@ -2,6 +2,7 @@
 
 Model Main_DemandForecasting {
 	Section Data_Model {
+		Comment: "Contains all data declarations for the demand forecasting model, including inputs, calendar, units, and forecasting function sections.";
 		Section Quantities_and_Units {
 			Comment: {
 				"This section contains all the units and quantities that are added automatically by AIMMS.
@@ -15,9 +16,9 @@ Model Main_DemandForecasting {
 				}
 				Comment: {
 					"Expresses the value for the duration of periods.
-					
+
 					The unit s has been added automatically because it is a required unit for AimmsWebUI.
-					
+
 					The unit minute has been added automatically because it is a required unit for AimmsWebUI."
 				}
 			}
@@ -27,9 +28,11 @@ Model Main_DemandForecasting {
 			}
 			Quantity Q_Monetary {
 				BaseUnit: $;
+				Comment: "Monetary quantity used to express cost and revenue values in US dollars.";
 			}
 		}
 		Section Calendars {
+			Comment: "Contains calendar definitions used to index time-based data across the forecasting horizon.";
 			Calendar Cal_Days {
 				Index: i_day;
 				Parameter: e_day;
@@ -40,10 +43,12 @@ Model Main_DemandForecasting {
 			}
 		}
 		Section Inputs {
+			Comment: "Contains the historic demand data used as input for all forecasting methods.";
 			Parameter p_historicData {
 				IndexDomain: i_day;
+				Comment: "Historic daily demand observations covering the period 2020-01-01 to 2020-05-23, used as input for all forecasting algorithms.";
 				Definition: {
-					data 
+					data
 					{ 2020-01-01 : 112,  2020-01-02 : 118,  2020-01-03 : 132,  2020-01-04 : 129,  2020-01-05 : 121,  2020-01-06 : 135,
 					  2020-01-07 : 148,  2020-01-08 : 148,  2020-01-09 : 136,  2020-01-10 : 119,  2020-01-11 : 104,  2020-01-12 : 118,
 					  2020-01-13 : 115,  2020-01-14 : 126,  2020-01-15 : 141,  2020-01-16 : 135,  2020-01-17 : 125,  2020-01-18 : 149,
@@ -73,93 +78,114 @@ Model Main_DemandForecasting {
 		}
 		Procedure pr_runAll {
 			Body: {
-				
+				! Execute all forecasting procedures defined within the Forecasting_Functions section.
 				RunAllProcedures(Forecasting_Functions);
 			}
+			Comment: "Runs all forecasting example procedures in the Forecasting_Functions section sequentially using the RunAllProcedures toolkit utility.";
 		}
 		Section Forecasting_Functions {
+			Comment: "Groups all forecasting method sections, each demonstrating a different demand forecasting algorithm available in the AIMMS Forecasting library.";
 			Section ExponentialSmoothing {
+				Comment: "Demonstrates simple exponential smoothing, which applies a weighted average of past observations using a single smoothing parameter alpha.";
 				Parameter p_estimateExponentialSmoothing {
 					IndexDomain: i_day;
+					Comment: "Stores the demand forecast estimates computed by the Exponential Smoothing algorithm for each day in the calendar.";
 				}
 				Parameter p_alphaExponentialSmoothing {
 					InitialData: 0;
+					Comment: "Smoothing factor alpha for exponential smoothing. A value of 0 triggers automatic tuning. Must be in (0,1] when set manually.";
 				}
 				Parameter p_bin_useAutomaticTrendExponentialSmoothing {
 					Range: binary;
 					InitialData: 1;
+					Comment: "Binary flag that controls whether alpha is automatically tuned (1) or set manually (0) for the exponential smoothing method.";
 				}
 				Procedure pr_exampleExponentialSmoothing {
 					Body: {
+						! Clear previous forecast estimates before computing new ones.
 						empty p_estimateExponentialSmoothingTrendSeasonality;
-						
+
 						if p_bin_useAutomaticTrendExponentialSmoothing then
-						
+
+						    ! Automatically tune the alpha parameter using the historic data.
 						    forecasting::ExponentialSmoothingTune(
-						        dataValues     :  p_historicData, 
-						        noObservations :  count(i_day | p_historicData(i_day)), 
+						        dataValues     :  p_historicData,
+						        noObservations :  count(i_day | p_historicData(i_day)),
 						        alpha          :  p_alphaExponentialSmoothing);
-						
+
 						elseif not p_alphaExponentialSmoothing then
-						
+
+						    ! Alpha is not set and automatic tuning is disabled: notify the user.
 						    webui::RequestPerformWebUIDialog(
-						        title   :  "Settings", 
-						        message :  "One or more settings are empty, set a value or activate the automatic tune.", 
-						        actions :  s_OK, 
+						        title   :  "Settings",
+						        message :  "One or more settings are empty, set a value or activate the automatic tune.",
+						        actions :  s_OK,
 						        onDone  :  'webui::NoOp1');
 						    return;
 						endif;
-						
+
+						! Run the exponential smoothing forecast using the configured alpha value.
 						forecasting::ExponentialSmoothing(
 						    dataValues         :  p_historicData,
 						    estimates          :  p_estimateExponentialSmoothing,
 						    noObservations     :  count(i_day | p_historicData(i_day)),
 						    alpha              :  p_alphaExponentialSmoothing);
 					}
+					Comment: "Executes the simple exponential smoothing forecast. If automatic tuning is enabled, it calls ExponentialSmoothingTune to determine alpha; otherwise it validates the manual setting and then runs the forecast.";
 					Set s_OK {
 						InitialData: {
 							{'OK'}
 						}
+						Comment: "Singleton set containing the label 'OK' used as the action set for the WebUI dialog confirmation button.";
 					}
 				}
 			}
 			Section ExponentialSmoothingTrend {
+				Comment: "Demonstrates exponential smoothing with trend (Holt's method), which captures both level and trend using smoothing parameters alpha and beta.";
 				Parameter p_estimateExponentialSmoothingTrend {
 					IndexDomain: i_day;
+					Comment: "Stores the demand forecast estimates computed by the Exponential Smoothing with Trend algorithm for each day in the calendar.";
 				}
 				Parameter p_alphaExponentialSmoothingTrend {
 					InitialData: 0;
+					Comment: "Smoothing factor alpha for the level component in exponential smoothing with trend. A value of 0 triggers automatic tuning.";
 				}
 				Parameter p_betaExponentialSmoothingTrend {
 					InitialData: 0;
+					Comment: "Smoothing factor beta for the trend component in exponential smoothing with trend. A value of 0 triggers automatic tuning.";
 				}
 				Parameter p_bin_useAutomaticTrendExponentialSmoothingTrend {
 					Range: binary;
 					InitialData: 1;
+					Comment: "Binary flag that controls whether alpha and beta are automatically tuned (1) or set manually (0) for the exponential smoothing with trend method.";
 				}
 				Procedure pr_exampleExponentialSmoothingTrend {
 					Body: {
+						! Clear previous forecast estimates before computing new ones.
 						empty p_estimateExponentialSmoothingTrend;
-						
+
 						if p_bin_useAutomaticTrendExponentialSmoothingTrend then
-						
+
+						    ! Automatically tune alpha and beta parameters using the historic data.
 						    forecasting::ExponentialSmoothingTrendTune(
-						        dataValues     :  p_historicData, 
-						        noObservations :  count(i_day | p_historicData(i_day)), 
-						        alpha          :  p_alphaExponentialSmoothingTrend, 
+						        dataValues     :  p_historicData,
+						        noObservations :  count(i_day | p_historicData(i_day)),
+						        alpha          :  p_alphaExponentialSmoothingTrend,
 						        beta           :  p_betaExponentialSmoothingTrend);
-						
+
 						elseif not p_alphaExponentialSmoothingTrend
 						        or not p_betaExponentialSmoothingTrend then
-						
+
+						    ! One or both parameters are not set and automatic tuning is disabled: notify the user.
 						    webui::RequestPerformWebUIDialog(
-						        title   :  "Settings", 
-						        message :  "One or more settings are empty, set a value or activate the automatic tune.", 
-						        actions :  s_OK, 
+						        title   :  "Settings",
+						        message :  "One or more settings are empty, set a value or activate the automatic tune.",
+						        actions :  s_OK,
 						        onDone  :  'webui::NoOp1');
 						    return;
 						endif;
-						
+
+						! Run the exponential smoothing with trend forecast using the configured alpha and beta values.
 						forecasting::ExponentialSmoothingTrend(
 						    dataValues         :  p_historicData,
 						    estimates          :  p_estimateExponentialSmoothingTrend,
@@ -167,57 +193,69 @@ Model Main_DemandForecasting {
 						    alpha              :  p_alphaExponentialSmoothingTrend,
 						    beta               :  p_betaExponentialSmoothingTrend);
 					}
+					Comment: "Executes the exponential smoothing with trend (Holt's) forecast. Automatically tunes alpha and beta if the flag is set; otherwise validates manual settings before running the forecast.";
 					Set s_OK {
 						InitialData: {
 							{'OK'}
 						}
+						Comment: "Singleton set containing the label 'OK' used as the action set for the WebUI dialog confirmation button.";
 					}
 				}
 			}
 			Section ExponentialSmoothingTrendSeasonality {
+				Comment: "Demonstrates exponential smoothing with trend and seasonality (Holt-Winters method), capturing level, trend, and seasonal patterns using alpha, beta, and gamma parameters.";
 				Parameter p_estimateExponentialSmoothingTrendSeasonality {
 					IndexDomain: i_day;
+					Comment: "Stores the demand forecast estimates computed by the Exponential Smoothing with Trend and Seasonality algorithm for each day in the calendar.";
 				}
 				Parameter p_alphaExponentialSmoothingTrendSeasonality {
 					InitialData: 0;
+					Comment: "Smoothing factor alpha for the level component in exponential smoothing with trend and seasonality. A value of 0 triggers automatic tuning.";
 				}
 				Parameter p_betaExponentialSmoothingTrendSeasonality {
 					InitialData: 0;
+					Comment: "Smoothing factor beta for the trend component in exponential smoothing with trend and seasonality. A value of 0 triggers automatic tuning.";
 				}
 				Parameter p_gammaExponentialSmoothingTrendSeasonality {
 					InitialData: 0;
+					Comment: "Smoothing factor gamma for the seasonal component in exponential smoothing with trend and seasonality. A value of 0 triggers automatic tuning.";
 				}
 				Parameter p_bin_useAutomaticTrendExponentialSmoothingTrendSeasonality {
 					Range: binary;
 					InitialData: 1;
+					Comment: "Binary flag that controls whether alpha, beta, and gamma are automatically tuned (1) or set manually (0) for the Holt-Winters method.";
 				}
 				Procedure pr_exampleExponentialSmoothingTrendSeasonality {
 					Body: {
+						! Clear previous forecast estimates before computing new ones.
 						empty p_estimateExponentialSmoothingTrendSeasonality;
-						
+
 						if p_bin_useAutomaticTrendExponentialSmoothingTrendSeasonality then
-						
+
+						    ! Automatically tune alpha, beta, and gamma parameters using the historic data with a period length of 12.
 						    forecasting::ExponentialSmoothingTrendSeasonalityTune(
-						        dataValues     :  p_historicData, 
-						        noObservations :  count(i_day | p_historicData(i_day)), 
-						        alpha          :  p_alphaExponentialSmoothingTrendSeasonality, 
-						        beta           :  p_betaExponentialSmoothingTrendSeasonality, 
-						        gamma          :  p_gammaExponentialSmoothingTrendSeasonality, 
+						        dataValues     :  p_historicData,
+						        noObservations :  count(i_day | p_historicData(i_day)),
+						        alpha          :  p_alphaExponentialSmoothingTrendSeasonality,
+						        beta           :  p_betaExponentialSmoothingTrendSeasonality,
+						        gamma          :  p_gammaExponentialSmoothingTrendSeasonality,
 						        periodLength   :  12);
-						
-						elseif not p_alphaExponentialSmoothingTrendSeasonality 
+
+						elseif not p_alphaExponentialSmoothingTrendSeasonality
 						        or not p_betaExponentialSmoothingTrendSeasonality
 						        or not p_gammaExponentialSmoothingTrendSeasonality then
-						
+
+						    ! One or more parameters are not set and automatic tuning is disabled: notify the user.
 						    webui::RequestPerformWebUIDialog(
-						        title   :  "Settings", 
-						        message :  "One or more settings are empty, set a value or activate the automatic tune.", 
-						        actions :  s_OK, 
+						        title   :  "Settings",
+						        message :  "One or more settings are empty, set a value or activate the automatic tune.",
+						        actions :  s_OK,
 						        onDone  :  'webui::NoOp1');
-						
+
 						    return;
 						endif;
-						
+
+						! Run the Holt-Winters forecast using the configured alpha, beta, and gamma values with a period length of 12.
 						forecasting::ExponentialSmoothingTrendSeasonality(
 						    dataValues         :  p_historicData,
 						    estimates          :  p_estimateExponentialSmoothingTrendSeasonality(i_day),
@@ -227,32 +265,41 @@ Model Main_DemandForecasting {
 						    gamma              :  p_gammaExponentialSmoothingTrendSeasonality,
 						    periodLength       :  12);
 					}
+					Comment: "Executes the Holt-Winters exponential smoothing forecast capturing trend and seasonality. Automatically tunes alpha, beta, and gamma if the flag is set; otherwise validates manual settings before running the forecast with a period length of 12.";
 					Set s_OK {
 						InitialData: {
 							{'OK'}
 						}
+						Comment: "Singleton set containing the label 'OK' used as the action set for the WebUI dialog confirmation button.";
 					}
 				}
 			}
 			Section MovingAverage {
+				Comment: "Demonstrates the simple moving average forecasting method, which averages the last N observations to produce a forecast.";
 				Parameter p_estimateMovingAverage {
 					IndexDomain: i_day;
+					Comment: "Stores the demand forecast estimates computed by the Moving Average algorithm for each day in the calendar.";
 				}
 				Procedure pr_exampleMovingAverage {
 					Body: {
+						! Clear previous forecast estimates before computing new ones.
 						empty p_estimateMovingAverage;
-						
+
+						! Compute the moving average forecast using 12 averaging periods over the historic data.
 						forecasting::MovingAverage(
 						    dataValues         :  p_historicData(i_day),
 						    estimates          :  p_estimateMovingAverage(i_day),
-						    noObservations     :  count(i_day | p_historicData(i_day)), 
+						    noObservations     :  count(i_day | p_historicData(i_day)),
 						    noAveragingPeriods :  12);
 					}
+					Comment: "Executes the simple moving average forecast over the historic demand data using 12 averaging periods.";
 				}
 			}
 			Section WeightedMovingAverage {
+				Comment: "Demonstrates the weighted moving average forecasting method, which applies user-defined weights to recent observations to produce a forecast.";
 				Parameter p_estimateWeightedMovingAverage {
 					IndexDomain: i_day;
+					Comment: "Stores the demand forecast estimates computed by the Weighted Moving Average algorithm for each day in the calendar.";
 				}
 				Set s_def_weights {
 					SubsetOf: Integers;
@@ -260,37 +307,46 @@ Model Main_DemandForecasting {
 					Definition: {
 						{1..p_numberOfWeights}
 					}
+					Comment: "Index set for the weighting periods, ranging from 1 to p_numberOfWeights, used to reference individual weight values in the weighted moving average.";
 				}
 				Parameter p_numberOfWeights {
 					InitialData: 4;
+					Comment: "Defines the number of weighting periods (and weights) used in the weighted moving average calculation. Defaults to 4.";
 				}
 				Parameter p_weights {
 					IndexDomain: i_wg;
 					InitialData: data { 1 : 0.1, 2 : 0.2, 3: 0.3, 4: 0.4 };
+					Comment: "Weight values assigned to each averaging period in the weighted moving average. Weights should sum to 1.0; more recent periods receive higher weights.";
 				}
 				Procedure pr_exampleWeightedMovingAverage {
 					Body: {
+						! Clear previous forecast estimates before computing new ones.
 						empty p_estimateWeightedMovingAverage;
-						
+
+						! Compute the weighted moving average forecast using the user-defined weights and number of periods.
 						forecasting::WeightedMovingAverage(
 						    dataValues         :  p_historicData,
 						    estimates          :  p_estimateWeightedMovingAverage(i_day),
-						    noObservations     :  count(i_day | p_historicData(i_day)), 
+						    noObservations     :  count(i_day | p_historicData(i_day)),
 						    weights            :  p_weights,
 						    noAveragingPeriods :  p_numberOfWeights);
 					}
+					Comment: "Executes the weighted moving average forecast over the historic demand data using the configured weight values and number of averaging periods.";
 				}
 			}
 			Section SimpleLinearRegression {
+				Comment: "Demonstrates simple linear regression forecasting, fitting a linear model to independent (machine production) and dependent (cost) variable observations to produce cost estimates.";
 				Set s_def_observations {
 					SubsetOf: Integers;
 					Index: i_ob;
 					Definition: {
 						{1..10}
 					}
+					Comment: "Index set for the ten observations used in the simple linear regression example, ranging from 1 to 10.";
 				}
 				Parameter p_def_machineProduction {
 					IndexDomain: i_ob;
+					Comment: "Sample machine production values (independent variable) for each observation, used as the x-variable in the simple linear regression.";
 					Definition: {
 						data{
 						    1  : 10,
@@ -307,6 +363,7 @@ Model Main_DemandForecasting {
 				}
 				Parameter p_def_costOfProduction {
 					IndexDomain: i_ob;
+					Comment: "Sample production cost values (dependent variable) for each observation, used as the y-variable in the simple linear regression.";
 					Definition: {
 						data{
 						   1   :  257.40,
@@ -323,20 +380,28 @@ Model Main_DemandForecasting {
 				}
 				Parameter p_coeff {
 					IndexDomain: forecasting::co;
+					Comment: "Stores the regression coefficients (intercept and slope) computed by the simple linear regression, indexed by the forecasting library coefficient set.";
 				}
 				Parameter p_variationMeasure {
 					IndexDomain: forecasting::vcs;
+					Comment: "Stores variation and correlation statistics (e.g., R-squared, SST, SSR, SSE) computed by the simple linear regression, indexed by the forecasting library variation component set.";
 				}
 				Parameter p_costEstimate {
 					IndexDomain: i_ob;
+					Comment: "Stores the fitted cost estimates produced by the simple linear regression model for each observation.";
 				}
 				Parameter p_costError {
 					IndexDomain: i_ob;
+					Comment: "Stores the residual errors (difference between actual and estimated cost) for each observation after running the simple linear regression.";
 				}
 				Procedure pr_exampleSimpleLinearRegressionVCR {
 					Body: {
+						! Clear previous cost estimates and residual errors before running the regression.
 						empty p_costError, p_costEstimate;
-						
+
+						! Fit a simple linear regression model using machine production as the independent variable
+						! and cost of production as the dependent variable. Retrieve coefficients, variation measures,
+						! fitted estimates, and residual errors.
 						forecasting::SimpleLinearRegressionVCR(
 						                 xIndepVarValue        :  p_def_machineProduction,
 						                 yDepVarValue          :  p_def_costOfProduction,
@@ -345,25 +410,37 @@ Model Main_DemandForecasting {
 						                 yEstimates            :  p_costEstimate,
 						                 eResiduals            :  p_costError);
 					}
-					Parameter p_loc_alpha;
-					Parameter p_loc_beta;
+					Comment: "Executes the simple linear regression with variation components and residuals (VCR). Fits a linear model mapping machine production to cost of production and stores coefficients, variation statistics, estimates, and residuals.";
+					Parameter p_loc_alpha {
+						Comment: "Local parameter reserved for the regression intercept (alpha coefficient) in extended linear regression computations.";
+					}
+					Parameter p_loc_beta {
+						Comment: "Local parameter reserved for the regression slope (beta coefficient) in extended linear regression computations.";
+					}
 				}
 			}
 		}
 	}
 	Section UI_Declarations {
-		Procedure pr_empty;
+		Comment: "Contains all WebUI-specific declarations, including page actions, workflow configuration, flags, and UI asset references.";
+		Procedure pr_empty {
+			Comment: "Empty placeholder procedure used as a no-operation default value for element parameters referencing procedures.";
+		}
 		StringParameter sp_logo {
 			Definition: "aimms_logo.png";
+			Comment: "File name of the AIMMS logo image displayed in the WebUI application header.";
 		}
 		Section Workflow {
+			Comment: "Defines the WebUI workflow configuration, specifying the ordered sequence of pages and their display properties for the side navigation panel.";
 			StringParameter sp_myWorkflows {
 				IndexDomain: (webui::indexWorkflowOrder,webui::indexWorkflowSpec);
+				Comment: "Workflow-level configuration data indexed by workflow order and specification, used to define workflow metadata for the WebUI workflow panel.";
 			}
 			StringParameter sp_myWorkflowSteps {
 				IndexDomain: (webui::indexWorkflowOrder,webui::indexNoOfPages,webui::indexWorkflowPageSpec);
+				Comment: "Defines the ordered list of workflow pages, including display text, icon, page ID, tooltip, and state for each step shown in the WebUI navigation workflow panel.";
 				Definition: {
-					data 
+					data
 					{ ( 1, 1, displayText       ) : "Welcome",
 					  ( 1, 1, icon              ) : "aimms-happy",
 					  ( 1, 1, pageId            ) : "home",
@@ -425,47 +502,62 @@ Model Main_DemandForecasting {
 			}
 		}
 		Section Pages {
+			Comment: "Contains page-specific UI declarations such as page actions, sidepanel configurations, and other per-page WebUI settings.";
 			Section Dashboard_Page {
+				Comment: "Contains WebUI declarations specific to the Dashboard page, including primary action buttons displayed in the page toolbar.";
 				DeclarationSection Dashboard_Page_Action {
+					Comment: "Groups the page action declarations for the Dashboard page, defining the toolbar buttons available to the user.";
 					StringParameter sp_dashboardPrimaryActions {
 						IndexDomain: webui::indexPageActionSpec;
+						Comment: "Defines the primary action button on the Dashboard page, configured to display 'Run All' and invoke pr_runAll when clicked.";
 						Definition: data { displaytext : "Run All",  procedure : "pr_runAll",  state : "active" };
 					}
 				}
 			}
 		}
 		Section FlagsIdentifier {
+			Comment: "Contains string parameters used as flag values for controlling WebUI widget edit states, such as read-only behaviour.";
 			StringParameter sp_readOnlyFlag {
 				Definition: "readonly";
+				Comment: "String constant holding the value 'readonly', used to set widgets to a non-editable state in the WebUI.";
 			}
 		}
 	}
 	Section Toolkit {
+		Comment: "Contains utility procedures that support general model execution patterns, such as running all procedures within a given section.";
 		Procedure RunAllProcedures {
 			Arguments: (s_in_sectionToRun);
 			Body: {
+				! Determine which procedures belong to the specified section by intersecting with AllProcedures.
 				s_loc_proceduresToRun := s_in_sectionToRun * AllProcedures;
-				
+
+				! Iterate over the resulting procedure set in order and apply (call) each procedure.
 				ordered for i_pr do
 				    ep_loc_procedureToRun := i_pr;
 				    apply(ep_loc_procedureToRun);
 				endfor;
 			}
+			Comment: "Generic utility that executes all procedures found within the section passed as input. It intersects the section's identifiers with AllProcedures and calls each in order.";
 			Set s_loc_proceduresToRun {
 				SubsetOf: AllProcedures;
 				Index: i_pr;
+				Comment: "Local working set holding the procedures within the target section that will be executed sequentially.";
 			}
 			Set s_in_sectionToRun {
 				SubsetOf: AllIdentifiers;
 				Property: Input;
+				Comment: "Input argument set containing all identifiers from the section whose procedures are to be executed by this utility.";
 			}
 			ElementParameter ep_loc_procedureToRun {
 				Range: s_loc_proceduresToRun;
 				Default: 'pr_empty';
+				Comment: "Local element parameter used to reference and apply each procedure in s_loc_proceduresToRun during the ordered loop.";
 			}
 		}
 	}
-	Procedure MainInitialization;
+	Procedure MainInitialization {
+		Comment: "Main initialization procedure called at model startup before libraries are initialized. Place early-stage initialization statements here.";
+	}
 	Procedure PostMainInitialization {
 		Comment: {
 			"Add initialization statements here that require that the libraries are already initialized properly,
@@ -473,10 +565,12 @@ Model Main_DemandForecasting {
 		}
 	}
 	Procedure MainExecution {
+		Comment: "Main execution procedure invoked when the model is run. Place primary solve or execution logic here.";
 		Set s_loc_action {
 			InitialData: {
 				{'ok'}
 			}
+			Comment: "Local set holding the default action label 'ok' used within the main execution context.";
 		}
 	}
 	Procedure PreMainTermination {
